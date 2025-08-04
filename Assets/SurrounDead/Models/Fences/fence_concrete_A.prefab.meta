@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: cfea4cdd1bb08b541bf92d6e5730e8c3
+timeCreated: 1478778864
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Fences/fence_concrete_A.prefab
+  uploadId: 683472

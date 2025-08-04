@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b4713fba440ea6b428f1af2be55f4b7e
+timeCreated: 1529659376
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Vehicles/parts_window_CC.prefab
+  uploadId: 683472

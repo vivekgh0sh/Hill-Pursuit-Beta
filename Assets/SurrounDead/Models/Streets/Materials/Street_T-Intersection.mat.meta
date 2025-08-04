@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: cc6e6cf83b606ec4db9aac107417bffc
+timeCreated: 1541602771
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Streets/Materials/Street_T-Intersection.mat
+  uploadId: 683472

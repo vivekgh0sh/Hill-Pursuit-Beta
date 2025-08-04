@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6dc97b23d99772e468569df5c18cbecc
+timeCreated: 1542729876
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Streets/street_curve_S01.prefab
+  uploadId: 683472

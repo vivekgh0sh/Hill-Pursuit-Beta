@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a8936bf04f83ad94e9d150ba0ce04348
+timeCreated: 1532437103
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Walls/Destroyed/debris_bricks01.prefab
+  uploadId: 683472

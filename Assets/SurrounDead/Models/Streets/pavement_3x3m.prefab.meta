@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 615b3c4a8425dc54199e7aa534006d11
+timeCreated: 1560956061
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Streets/pavement_3x3m.prefab
+  uploadId: 683472

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 59686e2c00ac8164fa621692f500f799
+timeCreated: 1540905710
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Streets/Materials/TrafficSign_SpeedLimit55.mat
+  uploadId: 683472

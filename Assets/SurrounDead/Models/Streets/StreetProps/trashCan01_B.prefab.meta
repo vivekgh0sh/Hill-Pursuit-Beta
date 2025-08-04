@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: cf19521f48fa6694ebfe145c7ddc081b
+timeCreated: 1542720556
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Streets/StreetProps/trashCan01_B.prefab
+  uploadId: 683472

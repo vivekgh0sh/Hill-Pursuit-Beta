@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c2016a86427745046acd76ecb4a51d14
+timeCreated: 1517832826
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Lights/lantern.prefab
+  uploadId: 683472

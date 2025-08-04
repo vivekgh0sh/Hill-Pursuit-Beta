@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 5c1b952c29644dc44892d1dbe3deb52a
+timeCreated: 1561380304
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Doors_Windows/window10_white.prefab
+  uploadId: 683472

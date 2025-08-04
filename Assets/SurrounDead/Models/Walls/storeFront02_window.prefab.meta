@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 0d5308bdb066a1043a4276f944e475ae
+timeCreated: 1558731273
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Walls/storeFront02_window.prefab
+  uploadId: 683472

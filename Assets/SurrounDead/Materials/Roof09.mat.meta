@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: afe63a1e07ebd2e468551cf3efb2cda0
+timeCreated: 1558628915
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Materials/Roof09.mat
+  uploadId: 683472

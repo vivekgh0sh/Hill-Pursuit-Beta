@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 581cc3d68dd4ee74b9a25085c3e52d73
+timeCreated: 1517839480
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Props/raft01.prefab
+  uploadId: 683472

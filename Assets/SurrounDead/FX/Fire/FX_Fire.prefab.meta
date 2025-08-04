@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: fc218220255d9c84391077d4254c5942
+timeCreated: 1508610410
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/FX/Fire/FX_Fire.prefab
+  uploadId: 683472

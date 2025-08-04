@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2dbf2eee1dd2bf046970b575df15473d
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 8574412962073106934
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Terrain/layer_Grass.terrainlayer
+  uploadId: 683472

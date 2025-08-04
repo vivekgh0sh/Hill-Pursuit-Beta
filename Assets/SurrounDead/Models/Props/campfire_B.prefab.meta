@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5803746ead03dd94eb8251676429fa3e
+timeCreated: 1518004500
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Props/campfire_B.prefab
+  uploadId: 683472

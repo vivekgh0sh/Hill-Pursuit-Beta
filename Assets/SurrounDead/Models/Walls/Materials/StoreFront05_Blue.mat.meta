@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: af9509e7b99a91f42a16e0888ebab706
+timeCreated: 1558717297
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Walls/Materials/StoreFront05_Blue.mat
+  uploadId: 683472

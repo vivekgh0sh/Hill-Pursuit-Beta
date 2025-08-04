@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ee0e92fc0847a634991e85f10befcac0
+timeCreated: 1529324456
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Vehicles/Veh_Van02.prefab
+  uploadId: 683472

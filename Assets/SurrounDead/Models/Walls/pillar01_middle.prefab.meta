@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e0777915996a1fa4ba408f44b2448a8a
+timeCreated: 1490624821
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Walls/pillar01_middle.prefab
+  uploadId: 683472

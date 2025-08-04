@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 8a46cef840b8fdb4694baed37d636d2b
+timeCreated: 1559835662
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Roofs/roof_flat_destroyed05.prefab
+  uploadId: 683472

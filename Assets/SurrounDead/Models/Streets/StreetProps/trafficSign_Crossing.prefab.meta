@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 58d5c45636f27bf4aaf863fe63a424ec
+timeCreated: 1542980856
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Streets/StreetProps/trafficSign_Crossing.prefab
+  uploadId: 683472

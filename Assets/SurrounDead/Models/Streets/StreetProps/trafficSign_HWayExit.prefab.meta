@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2a25874d5b4a24f42959b1ccd63df0f5
+timeCreated: 1542728023
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Streets/StreetProps/trafficSign_HWayExit.prefab
+  uploadId: 683472

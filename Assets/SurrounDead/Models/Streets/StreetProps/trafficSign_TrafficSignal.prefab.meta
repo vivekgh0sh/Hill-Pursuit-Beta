@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d1907d9e44a686249939ed4deba0f1c6
+timeCreated: 1542980859
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Streets/StreetProps/trafficSign_TrafficSignal.prefab
+  uploadId: 683472

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a07b296a66e7a7c4396f417543b4481e
+timeCreated: 1542729869
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Streets/street_connector.prefab
+  uploadId: 683472

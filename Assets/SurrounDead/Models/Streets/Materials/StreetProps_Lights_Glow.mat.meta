@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d5358d39e1acc12428fd3fdc8e2a0d1d
+timeCreated: 1541160774
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Streets/Materials/StreetProps_Lights_Glow.mat
+  uploadId: 683472

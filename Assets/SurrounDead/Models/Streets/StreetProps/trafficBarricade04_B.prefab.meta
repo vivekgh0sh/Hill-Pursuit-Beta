@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 10831ceb114d2df4ea3cee761b9714af
+timeCreated: 1542718820
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Streets/StreetProps/trafficBarricade04_B.prefab
+  uploadId: 683472

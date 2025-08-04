@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 14273f6827019c949911f379cfc1bcea
+timeCreated: 1508497583
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/FX/LightShafts/FX_lightShafts.prefab
+  uploadId: 683472

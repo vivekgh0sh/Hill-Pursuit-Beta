@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 6e064ab146f113b439f302f0fc7f88a1
+timeCreated: 1558706368
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Walls/pillar03.prefab
+  uploadId: 683472

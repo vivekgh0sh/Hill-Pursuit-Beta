@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f6ddbc6e56221db4e97294c0ef97b3b6
+timeCreated: 1521473594
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Vehicles/Materials/Veh_Taxi.mat
+  uploadId: 683472

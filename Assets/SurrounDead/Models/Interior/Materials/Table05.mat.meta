@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: b800c5f0825752842a4a34856e74cef5
+timeCreated: 1562841892
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Interior/Materials/Table05.mat
+  uploadId: 683472

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 76924e7fb04abf54eb5960ecca9251ce
+timeCreated: 1541426340
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Streets/Materials/TrafficSign_DoNotEnter.mat
+  uploadId: 683472

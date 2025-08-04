@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e76db32459ad4bd4290b8f55f4f43182
+timeCreated: 1517576626
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Nature/tree_coniferous_F.prefab
+  uploadId: 683472

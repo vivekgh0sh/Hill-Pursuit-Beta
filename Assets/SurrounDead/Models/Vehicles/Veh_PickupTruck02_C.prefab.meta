@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4d4626aa275317e4e95a6ab011e309a6
+timeCreated: 1529324412
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Vehicles/Veh_PickupTruck02_C.prefab
+  uploadId: 683472

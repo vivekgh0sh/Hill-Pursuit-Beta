@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 911bb1fdf8e79e54aa5fb4e5f9d076d3
+timeCreated: 1532436069
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Walls/Destroyed/wall01_destroyed03.prefab
+  uploadId: 683472

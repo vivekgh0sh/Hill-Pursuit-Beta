@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: abd1d54e60f877449b31f7ad228b57b8
+timeCreated: 1544114159
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Streets/StreetDecals/street_decal_parking04.prefab
+  uploadId: 683472

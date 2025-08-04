@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c0a420df3dbde8140a50a85cfa305948
+timeCreated: 1532427776
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Fences/fence_concrete_B_broken.prefab
+  uploadId: 683472

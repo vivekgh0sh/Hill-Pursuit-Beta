@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: fa9eec32b38268d4f974ae45a4123830
+timeCreated: 1490624816
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Walls/beam01_3m.prefab
+  uploadId: 683472

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a9b4e853982b4754c9d68045f3701e98
+timeCreated: 1508249321
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Interior/table02.prefab
+  uploadId: 683472

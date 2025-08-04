@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 760dc5a20e4f53e40b5b8ed033c6f5a6
+timeCreated: 1520343729
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Vehicles/Materials/Veh_SchoolBus_GlassTransparent.mat
+  uploadId: 683472

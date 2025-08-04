@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d6ced676bb9ea8a439b5b089b725286c
+timeCreated: 1490619805
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Fences/fence_rail_B.prefab
+  uploadId: 683472

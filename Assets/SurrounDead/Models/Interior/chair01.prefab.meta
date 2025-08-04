@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0b5de226f378a7b4b812349cf183ed1b
+timeCreated: 1508248515
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Interior/chair01.prefab
+  uploadId: 683472

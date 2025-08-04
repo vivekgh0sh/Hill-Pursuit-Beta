@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 4ceae8f4c5a314042b4c5f64ac1402d3
+timeCreated: 1560167445
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Doors_Windows/door15_red.prefab
+  uploadId: 683472

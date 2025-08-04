@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 6791ace5fd6552442b92f1bed7617fc3
+timeCreated: 1558716666
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Addons/awning03.prefab
+  uploadId: 683472

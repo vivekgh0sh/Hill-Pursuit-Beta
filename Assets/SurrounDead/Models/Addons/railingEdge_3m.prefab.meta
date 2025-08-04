@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: f0f9f36af1d13d949afc444c2894be1b
+timeCreated: 1560513432
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Addons/railingEdge_3m.prefab
+  uploadId: 683472

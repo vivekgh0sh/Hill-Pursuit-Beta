@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 942bfdc7c6add5e42b41f057e1647087
+timeCreated: 1558796326
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Addons/stairs03_D_right.prefab
+  uploadId: 683472

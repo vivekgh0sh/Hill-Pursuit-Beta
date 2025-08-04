@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 53dbe428447e3c540843d654ab0b6bb7
+timeCreated: 1544180717
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Streets/street_overpass_A.prefab
+  uploadId: 683472

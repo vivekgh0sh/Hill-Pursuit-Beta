@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a1399cf1de9c10f43bcc33b4e747ca26
+timeCreated: 1490624944
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Walls/wall01_6m_door_A.prefab
+  uploadId: 683472

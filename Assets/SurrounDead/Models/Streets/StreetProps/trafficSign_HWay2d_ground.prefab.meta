@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: bebb32a9ca953484b9192581e2de9ffc
+timeCreated: 1542727970
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Streets/StreetProps/trafficSign_HWay2d_ground.prefab
+  uploadId: 683472

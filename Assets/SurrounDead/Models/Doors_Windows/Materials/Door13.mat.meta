@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 959d01e4a121ca04eaba24052952e5c3
+timeCreated: 1559401112
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Doors_Windows/Materials/Door13.mat
+  uploadId: 683472

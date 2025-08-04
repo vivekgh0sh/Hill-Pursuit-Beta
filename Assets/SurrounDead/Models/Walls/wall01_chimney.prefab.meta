@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 443ef6fd477c38e439272ef34dcef8ff
+timeCreated: 1490624945
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Walls/wall01_chimney.prefab
+  uploadId: 683472

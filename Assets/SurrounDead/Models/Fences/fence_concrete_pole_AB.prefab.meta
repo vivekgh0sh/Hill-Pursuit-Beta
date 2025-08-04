@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3ea280bdc7f507348adaf5c494cdef98
+timeCreated: 1532427780
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Fences/fence_concrete_pole_AB.prefab
+  uploadId: 683472

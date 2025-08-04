@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 7cebc814ceffe5a4380ead31177b7d27
+timeCreated: 1559754439
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Addons/rainwaterPipe_middle_6m.prefab
+  uploadId: 683472

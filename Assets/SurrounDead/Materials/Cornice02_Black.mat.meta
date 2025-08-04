@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: b3206eefa09aae54aad622a464d26210
+timeCreated: 1558618286
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Materials/Cornice02_Black.mat
+  uploadId: 683472

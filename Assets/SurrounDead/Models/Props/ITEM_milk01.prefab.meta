@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: dba81a17f4239b343b81f27efaa55d8c
+timeCreated: 1508760257
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Props/ITEM_milk01.prefab
+  uploadId: 683472

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 9fd4e5616778dae4bbe6aecd145b0b91
+timeCreated: 1544114143
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Streets/StreetDecals/street_decal_garbage01.prefab
+  uploadId: 683472

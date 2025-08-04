@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 2f35461747d23a4488f69ff8a1243a12
+timeCreated: 1551883574
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Walls/Materials/StoreFront02_Black.mat
+  uploadId: 683472

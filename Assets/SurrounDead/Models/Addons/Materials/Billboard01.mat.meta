@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 33536e993aa2ac044b0f0855263a6371
+timeCreated: 1558708187
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Addons/Materials/Billboard01.mat
+  uploadId: 683472

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7d7f19e6d64aeaf4f8fbf966a006bcbc
+timeCreated: 1542727191
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Streets/StreetProps/trafficSign_yield.prefab
+  uploadId: 683472

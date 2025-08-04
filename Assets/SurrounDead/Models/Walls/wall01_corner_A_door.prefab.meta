@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 897c142571462464aa41018676c11e30
+timeCreated: 1490625040
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Walls/wall01_corner_A_door.prefab
+  uploadId: 683472

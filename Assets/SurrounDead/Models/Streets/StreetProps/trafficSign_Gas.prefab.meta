@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 66143e31d8583a845b7d3a77a8c37274
+timeCreated: 1542980854
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Streets/StreetProps/trafficSign_Gas.prefab
+  uploadId: 683472

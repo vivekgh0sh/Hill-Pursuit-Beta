@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 885b4d32c9b5c17408992ca8f0152bd2
+timeCreated: 1542980862
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Streets/StreetProps/trafficSign_ChevronR.prefab
+  uploadId: 683472

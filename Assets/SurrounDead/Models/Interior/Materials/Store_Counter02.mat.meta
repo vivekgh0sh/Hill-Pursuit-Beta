@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 26c9a0efd14c8264c8107a201686f99d
+timeCreated: 1562757922
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Interior/Materials/Store_Counter02.mat
+  uploadId: 683472

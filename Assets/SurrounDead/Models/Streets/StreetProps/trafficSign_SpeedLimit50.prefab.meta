@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0a68144662eec944aaddfcfec46f34dc
+timeCreated: 1542980873
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Streets/StreetProps/trafficSign_SpeedLimit50.prefab
+  uploadId: 683472

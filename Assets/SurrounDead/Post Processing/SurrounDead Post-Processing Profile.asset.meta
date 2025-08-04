@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b7fe2c4a08fd373419b62a05b5e50373
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Post Processing/SurrounDead Post-Processing Profile.asset
+  uploadId: 683472

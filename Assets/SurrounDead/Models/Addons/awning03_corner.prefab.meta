@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: aec2ed48646f7eb4581bd3c490dd293c
+timeCreated: 1558716864
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Addons/awning03_corner.prefab
+  uploadId: 683472

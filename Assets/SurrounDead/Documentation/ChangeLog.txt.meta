@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 27f8bb8f080cc124ba1201ffce4cd9f1
+timeCreated: 1518610178
+licenseType: Store
+TextScriptImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Documentation/ChangeLog.txt
+  uploadId: 683472

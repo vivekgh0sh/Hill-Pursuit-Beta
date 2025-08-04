@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 4b53d1cbfeaa8904690e46a4c0dde831
+timeCreated: 1559754433
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Addons/rainwaterPipe_bottom.prefab
+  uploadId: 683472

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: fcc14d341d64df144b81f7325739f523
+timeCreated: 1529324423
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76276
+  packageName: SurrounDead - Survival Game Assets
+  packageVersion: 3.5.33
+  assetPath: Assets/SurrounDead/Models/Vehicles/Veh_Sedan04.prefab
+  uploadId: 683472
