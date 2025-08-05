@@ -1,0 +1,176 @@
+fileFormatVersion: 2
+guid: 00ab33fb5dd5647ceb80308be1d82d92
+timeCreated: 1498738266
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Body_Jasmin_GB8
+    100002: Damper_R
+    100004: Damper_R_Down
+    100006: Glass
+    100008: Glass1
+    100010: Glass2
+    100012: Interior
+    100014: //RootNode
+    100016: Jasmin_GB8_W_FL
+    100018: Jasmin_GB8_W_FR
+    100020: Jasmin_GB8_W_RL
+    100022: Jasmin_GB8_W_RR
+    100024: Shaft
+    100026: Shaft_Holder
+    100028: Texture Group
+    100030: Triangle_F
+    100032: Triangle_RL
+    100034: Triangle_RR
+    100036: Steering_Wheel
+    100038: Jasmin_GB8_COLLIDER
+    400000: Body_Jasmin_GB8
+    400002: Damper_R
+    400004: Damper_R_Down
+    400006: Glass
+    400008: Glass1
+    400010: Glass2
+    400012: Interior
+    400014: //RootNode
+    400016: Jasmin_GB8_W_FL
+    400018: Jasmin_GB8_W_FR
+    400020: Jasmin_GB8_W_RL
+    400022: Jasmin_GB8_W_RR
+    400024: Shaft
+    400026: Shaft_Holder
+    400028: Texture Group
+    400030: Triangle_F
+    400032: Triangle_RL
+    400034: Triangle_RR
+    400036: Steering_Wheel
+    400038: Jasmin_GB8_COLLIDER
+    2300000: Body_Jasmin_GB8
+    2300002: Damper_R
+    2300004: Damper_R_Down
+    2300006: Glass1
+    2300008: Glass2
+    2300010: Interior
+    2300012: Jasmin_GB8_W_FL
+    2300014: Jasmin_GB8_W_FR
+    2300016: Jasmin_GB8_W_RL
+    2300018: Jasmin_GB8_W_RR
+    2300020: Shaft
+    2300022: Shaft_Holder
+    2300024: Triangle_F
+    2300026: Triangle_RL
+    2300028: Triangle_RR
+    2300030: Steering_Wheel
+    2300032: Jasmin_GB8_COLLIDER
+    3300000: Body_Jasmin_GB8
+    3300002: Damper_R
+    3300004: Damper_R_Down
+    3300006: Glass1
+    3300008: Glass2
+    3300010: Interior
+    3300012: Jasmin_GB8_W_FL
+    3300014: Jasmin_GB8_W_FR
+    3300016: Jasmin_GB8_W_RL
+    3300018: Jasmin_GB8_W_RR
+    3300020: Shaft
+    3300022: Shaft_Holder
+    3300024: Triangle_F
+    3300026: Triangle_RL
+    3300028: Triangle_RR
+    3300030: Steering_Wheel
+    3300032: Jasmin_GB8_COLLIDER
+    4300000: Body_Jasmin_GB8
+    4300002: Interior
+    4300004: Glass1
+    4300006: Glass2
+    4300008: Shaft_Holder
+    4300010: Shaft
+    4300012: Damper_R
+    4300014: Damper_R_Down
+    4300016: Triangle_RL
+    4300018: Triangle_RR
+    4300020: Triangle_F
+    4300022: Jasmin_GB8_W_FL
+    4300024: Jasmin_GB8_W_RL
+    4300026: Jasmin_GB8_W_RR
+    4300028: Jasmin_GB8_W_FR
+    4300030: Steering_Wheel
+    4300032: Jasmin_GB8_COLLIDER
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 0
+    keepQuads: 0
+    weldVertices: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 180
+    normalImportMode: 1
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 94364
+  packageName: Vintage Racing Cars Pack
+  packageVersion: 1.0
+  assetPath: Assets/Vintage_Race_Cars_Pack/1-Cars/6/6.fbx
+  uploadId: 191664

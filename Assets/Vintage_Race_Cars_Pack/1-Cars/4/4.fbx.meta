@@ -1,0 +1,141 @@
+fileFormatVersion: 2
+guid: 44564673808884edb9755d55e20b514d
+timeCreated: 1498737000
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Body_Citraen_SD
+    100002: //RootNode
+    100004: Citraen_SD_Collider
+    100006: Citraen_SD_F_Glass
+    100008: Citraen_SD_Glass
+    100010: Citraen_SD_Interior
+    100012: Citraen_SD_R_Glass
+    100014: Citraen_SD_W_FL
+    100016: Citraen_SD_W_FR
+    100018: Citraen_SD_W_RL
+    100020: Citraen_SD_W_RR
+    100022: Texture Group
+    100024: Steering_Wheel
+    400000: Body_Citraen_SD
+    400002: //RootNode
+    400004: Citraen_SD_Collider
+    400006: Citraen_SD_F_Glass
+    400008: Citraen_SD_Glass
+    400010: Citraen_SD_Interior
+    400012: Citraen_SD_R_Glass
+    400014: Citraen_SD_W_FL
+    400016: Citraen_SD_W_FR
+    400018: Citraen_SD_W_RL
+    400020: Citraen_SD_W_RR
+    400022: Texture Group
+    400024: Steering_Wheel
+    2300000: Body_Citraen_SD
+    2300002: Citraen_SD_Collider
+    2300004: Citraen_SD_F_Glass
+    2300006: Citraen_SD_Interior
+    2300008: Citraen_SD_R_Glass
+    2300010: Citraen_SD_W_FL
+    2300012: Citraen_SD_W_FR
+    2300014: Citraen_SD_W_RL
+    2300016: Citraen_SD_W_RR
+    2300018: Steering_Wheel
+    3300000: Body_Citraen_SD
+    3300002: Citraen_SD_Collider
+    3300004: Citraen_SD_F_Glass
+    3300006: Citraen_SD_Interior
+    3300008: Citraen_SD_R_Glass
+    3300010: Citraen_SD_W_FL
+    3300012: Citraen_SD_W_FR
+    3300014: Citraen_SD_W_RL
+    3300016: Citraen_SD_W_RR
+    3300018: Steering_Wheel
+    4300000: Body_Citraen_SD
+    4300002: Citraen_SD_Interior
+    4300004: Citraen_SD_F_Glass
+    4300006: Citraen_SD_R_Glass
+    4300008: Citraen_SD_W_FR
+    4300010: Citraen_SD_W_RR
+    4300012: Citraen_SD_W_RL
+    4300014: Citraen_SD_W_FL
+    4300016: Citraen_SD_Collider
+    4300018: Steering_Wheel
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 0
+    keepQuads: 0
+    weldVertices: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 180
+    normalImportMode: 1
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 94364
+  packageName: Vintage Racing Cars Pack
+  packageVersion: 1.0
+  assetPath: Assets/Vintage_Race_Cars_Pack/1-Cars/4/4.fbx
+  uploadId: 191664

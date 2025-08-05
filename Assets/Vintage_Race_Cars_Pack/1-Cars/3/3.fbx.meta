@@ -1,0 +1,128 @@
+fileFormatVersion: 2
+guid: 1d17a56a5a6ab4d5aa1186396ac8bf04
+timeCreated: 1498732079
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Bartha_1000_Barchetta_Body
+    100004: Bartha_1000_Barchetta_W_FL
+    100006: Bartha_1000_Barchetta_W_FR
+    100008: Engine
+    100010: Glass
+    100012: Interior
+    100014: Texture Group
+    100016: Steering_Wheel
+    100018: Bartha_1000_Barchetta_Collider
+    400000: //RootNode
+    400002: Bartha_1000_Barchetta_Body
+    400004: Bartha_1000_Barchetta_W_FL
+    400006: Bartha_1000_Barchetta_W_FR
+    400008: Engine
+    400010: Glass
+    400012: Interior
+    400014: Texture Group
+    400016: Steering_Wheel
+    400018: Bartha_1000_Barchetta_Collider
+    2300000: Bartha_1000_Barchetta_Body
+    2300002: Bartha_1000_Barchetta_W_FL
+    2300004: Bartha_1000_Barchetta_W_FR
+    2300006: Engine
+    2300008: Glass
+    2300010: Interior
+    2300012: Steering_Wheel
+    2300014: Bartha_1000_Barchetta_Collider
+    3300000: Bartha_1000_Barchetta_Body
+    3300002: Bartha_1000_Barchetta_W_FL
+    3300004: Bartha_1000_Barchetta_W_FR
+    3300006: Engine
+    3300008: Glass
+    3300010: Interior
+    3300012: Steering_Wheel
+    3300014: Bartha_1000_Barchetta_Collider
+    4300000: Bartha_1000_Barchetta_Body
+    4300002: Engine
+    4300004: Interior
+    4300006: Glass
+    4300008: Bartha_1000_Barchetta_W_FL
+    4300010: Bartha_1000_Barchetta_W_FR
+    4300012: Steering_Wheel
+    4300014: Bartha_1000_Barchetta_Collider
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 0
+    keepQuads: 0
+    weldVertices: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 180
+    normalImportMode: 1
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 94364
+  packageName: Vintage Racing Cars Pack
+  packageVersion: 1.0
+  assetPath: Assets/Vintage_Race_Cars_Pack/1-Cars/3/3.fbx
+  uploadId: 191664

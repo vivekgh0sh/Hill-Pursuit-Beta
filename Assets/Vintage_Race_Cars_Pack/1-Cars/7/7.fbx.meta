@@ -1,0 +1,201 @@
+fileFormatVersion: 2
+guid: 94f390fd48e4a47049641d30a337fd75
+timeCreated: 1498739476
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Body_Marta_MF12
+    100002: Damper_R
+    100004: Damper_R_Down
+    100006: Glass
+    100008: Glass1
+    100010: Glass2
+    100012: Interior
+    100014: //RootNode
+    100016: Marta_MF12_COLLIDER
+    100018: Marta_MF12_W_FL
+    100020: Marta_MF12_W_FR
+    100022: Marta_MF12_W_RL
+    100024: Marta_MF12_W_RR
+    100026: Shaft
+    100028: Shaft_Holder
+    100030: Texture Group
+    100032: Triangle_FL
+    100034: Triangle_FR
+    100036: Triangle_RL
+    100038: Triangle_RR
+    100040: Pilot_Head_Generic
+    100042: Pilot_Jasmin_GB8
+    100044: Steering_Wheel
+    100046: Pilot
+    100048: Pilot_Head
+    400000: Body_Marta_MF12
+    400002: Damper_R
+    400004: Damper_R_Down
+    400006: Glass
+    400008: Glass1
+    400010: Glass2
+    400012: Interior
+    400014: //RootNode
+    400016: Marta_MF12_COLLIDER
+    400018: Marta_MF12_W_FL
+    400020: Marta_MF12_W_FR
+    400022: Marta_MF12_W_RL
+    400024: Marta_MF12_W_RR
+    400026: Shaft
+    400028: Shaft_Holder
+    400030: Texture Group
+    400032: Triangle_FL
+    400034: Triangle_FR
+    400036: Triangle_RL
+    400038: Triangle_RR
+    400040: Pilot_Head_Generic
+    400042: Pilot_Jasmin_GB8
+    400044: Steering_Wheel
+    400046: Pilot
+    400048: Pilot_Head
+    2300000: Body_Marta_MF12
+    2300002: Damper_R
+    2300004: Damper_R_Down
+    2300006: Glass1
+    2300008: Glass2
+    2300010: Interior
+    2300012: Marta_MF12_COLLIDER
+    2300014: Marta_MF12_W_FL
+    2300016: Marta_MF12_W_FR
+    2300018: Marta_MF12_W_RL
+    2300020: Marta_MF12_W_RR
+    2300022: Shaft
+    2300024: Shaft_Holder
+    2300026: Triangle_FL
+    2300028: Triangle_FR
+    2300030: Triangle_RL
+    2300032: Triangle_RR
+    2300034: Pilot_Head_Generic
+    2300036: Pilot_Jasmin_GB8
+    2300038: Steering_Wheel
+    2300040: Pilot
+    2300042: Pilot_Head
+    3300000: Body_Marta_MF12
+    3300002: Damper_R
+    3300004: Damper_R_Down
+    3300006: Glass1
+    3300008: Glass2
+    3300010: Interior
+    3300012: Marta_MF12_COLLIDER
+    3300014: Marta_MF12_W_FL
+    3300016: Marta_MF12_W_FR
+    3300018: Marta_MF12_W_RL
+    3300020: Marta_MF12_W_RR
+    3300022: Shaft
+    3300024: Shaft_Holder
+    3300026: Triangle_FL
+    3300028: Triangle_FR
+    3300030: Triangle_RL
+    3300032: Triangle_RR
+    3300034: Pilot_Head_Generic
+    3300036: Pilot_Jasmin_GB8
+    3300038: Steering_Wheel
+    3300040: Pilot
+    3300042: Pilot_Head
+    4300000: Body_Marta_MF12
+    4300002: Interior
+    4300004: Glass1
+    4300006: Glass2
+    4300008: Shaft_Holder
+    4300010: Shaft
+    4300012: Damper_R
+    4300014: Damper_R_Down
+    4300016: Triangle_RR
+    4300018: Triangle_RL
+    4300020: Triangle_FL
+    4300022: Triangle_FR
+    4300024: Marta_MF12_W_FL
+    4300026: Marta_MF12_W_RL
+    4300028: Marta_MF12_W_RR
+    4300030: Marta_MF12_W_FR
+    4300032: Marta_MF12_COLLIDER
+    4300034: Steering_Wheel
+    4300036: Pilot_Jasmin_GB8
+    4300038: Pilot_Head_Generic
+    4300040: Pilot
+    4300042: Pilot_Head
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 0
+    keepQuads: 0
+    weldVertices: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 180
+    normalImportMode: 1
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 94364
+  packageName: Vintage Racing Cars Pack
+  packageVersion: 1.0
+  assetPath: Assets/Vintage_Race_Cars_Pack/1-Cars/7/7.fbx
+  uploadId: 191664
