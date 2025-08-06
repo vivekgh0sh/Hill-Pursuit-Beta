@@ -1,26 +1,39 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+// THIS IS THE MISSING PART!
+// This class defines what a "wheel" is for our controller.
 [System.Serializable]
 public class WheelInfo
 {
     public WheelCollider collider;
     public Transform visual;
-    public bool canSteer = false; // Optional for later
+    public bool canSteer = false;
     public bool hasMotor = true;
 }
 
+// This is your main controller class
 public class CarController : MonoBehaviour
 {
     [Header("Car Settings")]
     public float motorForce = 1500f;
     public float brakeForce = 3000f;
+    public Transform centerOfMass;
 
     [Header("Wheel Setup")]
-    public WheelInfo[] wheels; // Assign your 4 wheels here in the inspector
+    public WheelInfo[] wheels; // Now it knows what WheelInfo is
 
-    private float horizontalInput;
     private float verticalInput;
+    private Rigidbody rb;
+
+    void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+        if (centerOfMass != null)
+        {
+            rb.centerOfMass = transform.InverseTransformPoint(centerOfMass.position);
+        }
+    }
 
     void Update()
     {
@@ -30,60 +43,74 @@ public class CarController : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Physics calculations should be in FixedUpdate
         ApplyMotorAndBrake();
+        EnforceRotationConstraint();
+    }
+
+    void EnforceRotationConstraint()
+    {
+        // --- PART 1: KILL ROTATIONAL VELOCITY ---
+        // Get the current angular velocity
+        Vector3 currentAngularVelocity = rb.angularVelocity;
+
+        // Create a new velocity with the Z component forced to zero
+        Vector3 correctedAngularVelocity = new Vector3(currentAngularVelocity.x, currentAngularVelocity.y, 0f);
+
+        // Apply the corrected velocity. This stops any existing roll dead in its tracks.
+        rb.angularVelocity = correctedAngularVelocity;
+
+
+        // --- PART 2: CORRECT THE ROTATION (as before) ---
+        // Get the current rotation in Euler angles
+        Vector3 currentEulerAngles = rb.rotation.eulerAngles;
+
+        // Create the new, corrected rotation
+        Quaternion correctedRotation = Quaternion.Euler(currentEulerAngles.x, currentEulerAngles.y, 0f);
+
+        // Apply the corrected rotation
+        rb.rotation = correctedRotation;
+    } 
+
+    void ApplyMotorAndBrake()
+    {
+        float currentBrakeForce = 0f;
+
+        if (verticalInput < 0)
+        {
+            currentBrakeForce = brakeForce;
+        }
+
+        foreach (var wheel in wheels)
+        {
+            if (wheel.hasMotor)
+            {
+                wheel.collider.motorTorque = verticalInput * motorForce;
+            }
+
+            if (wheel.canSteer) // Front wheels
+            {
+                wheel.collider.brakeTorque = currentBrakeForce;
+            }
+            else // Rear wheels
+            {
+                wheel.collider.brakeTorque = currentBrakeForce * 0.5f;
+            }
+        }
     }
 
     void HandleInput()
     {
-        // Reset input
         verticalInput = 0;
-
         var pointer = Pointer.current;
-        if (pointer == null || !pointer.press.isPressed)
-        {
-            return; // No touch/click, do nothing
-        }
+        if (pointer == null || !pointer.press.isPressed) return;
 
-        // Check if press is on the right or left half of the screen
         if (pointer.position.ReadValue().x > Screen.width / 2)
         {
-            // Right side: Accelerate
-            verticalInput = 1;
+            verticalInput = 1; // Accelerate
         }
         else
         {
-            // Left side: Brake/Reverse
-            verticalInput = -1;
-        }
-    }
-
-    void ApplyMotorAndBrake()
-    {
-        foreach (var wheel in wheels)
-        {
-            if (verticalInput > 0) // Accelerating
-            {
-                if (wheel.hasMotor)
-                {
-                    wheel.collider.motorTorque = verticalInput * motorForce;
-                }
-                wheel.collider.brakeTorque = 0;
-            }
-            else if (verticalInput < 0) // Braking
-            {
-                // Apply brake force to all wheels
-                wheel.collider.brakeTorque = brakeForce;
-                if (wheel.hasMotor)
-                {
-                    wheel.collider.motorTorque = 0;
-                }
-            }
-            else // No input
-            {
-                wheel.collider.motorTorque = 0;
-                wheel.collider.brakeTorque = 0;
-            }
+            verticalInput = -1; // Brake
         }
     }
 
@@ -93,10 +120,7 @@ public class CarController : MonoBehaviour
         {
             Vector3 pos;
             Quaternion rot;
-            // Get the world position and rotation from the physics wheel
             wheel.collider.GetWorldPose(out pos, out rot);
-
-            // Apply it to the visual wheel
             wheel.visual.position = pos;
             wheel.visual.rotation = rot;
         }
