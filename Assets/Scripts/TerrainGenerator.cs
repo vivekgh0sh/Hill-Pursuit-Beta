@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,15 +5,18 @@ public class TerrainGenerator : MonoBehaviour
 {
     [Header("References")]
     public Transform player;
-    public BoxCollider playerCollider; // <-- ADDED: To get the car's width
+    public BoxCollider playerCollider;
     public GameObject terrainChunkPrefab;
-    public Material terrainMaterial;
+
+    [Header("Theme Materials")] // <-- MODIFIED SECTION
+    public Material topMaterial; // Assign Grass material here
+    public Material sideMaterial; // Assign Dirt/Stone material here
 
     [Header("Terrain Settings")]
     public float chunkLength = 50f;
     public int verticesPerChunk = 100;
-    public float terrainHeight = 15f;
-    public float noiseScale = 0.1f;
+    public float terrainHeight = 10f; // Lowered for better driveability
+    public float noiseScale = 0.07f; // Made hills wider
 
     [Header("Generator Settings")]
     public int chunksVisibleAhead = 3;
@@ -26,9 +28,9 @@ public class TerrainGenerator : MonoBehaviour
     void Start()
     {
         seed = UnityEngine.Random.Range(0f, 100f);
-        if (playerCollider == null)
+        if (playerCollider == null || topMaterial == null || sideMaterial == null)
         {
-            Debug.LogError("Player Collider is not assigned in the TerrainGenerator!");
+            Debug.LogError("Player Collider or Materials are not assigned in the TerrainGenerator!");
             return;
         }
 
@@ -64,82 +66,84 @@ public class TerrainGenerator : MonoBehaviour
         }
     }
 
+    // --- THIS ENTIRE FUNCTION HAS BEEN REWRITTEN FOR SUB-MESHES ---
     void GenerateTerrain(GameObject chunk)
     {
         MeshFilter meshFilter = chunk.GetComponent<MeshFilter>();
         MeshCollider meshCollider = chunk.GetComponent<MeshCollider>();
         MeshRenderer meshRenderer = chunk.GetComponent<MeshRenderer>();
-        meshRenderer.material = terrainMaterial;
         Mesh mesh = new Mesh();
 
-        // --- MODIFIED FOR AUTO-SIZING ---
-        // Get terrain depth from the car's collider size, plus a little padding.
         float terrainDepth = playerCollider.size.z * 1.2f;
         float halfDepth = terrainDepth / 2f;
-        // ---------------------------------
-
-        Vector3[] vertices = new Vector3[(verticesPerChunk + 1) * 4];
-        int[] triangles = new int[verticesPerChunk * 6 * 3];
-
         float step = chunkLength / verticesPerChunk;
         float startX = chunk.transform.position.x;
 
+        // We need lists for triangles because we don't know the exact size ahead of time
+        List<Vector3> vertices = new List<Vector3>();
+        List<int> topTriangles = new List<int>();
+        List<int> sideTriangles = new List<int>();
+
+        // Generate the vertices first
         for (int i = 0; i <= verticesPerChunk; i++)
         {
             float xPos = i * step;
             float perlinY = Mathf.PerlinNoise((startX + xPos) * noiseScale, seed) * terrainHeight;
+
+            // Add the 4 corner vertices for this segment
+            vertices.Add(new Vector3(xPos, perlinY, -halfDepth)); // Front-Top
+            vertices.Add(new Vector3(xPos, perlinY - 20f, -halfDepth)); // Front-Bottom
+            vertices.Add(new Vector3(xPos, perlinY, halfDepth)); // Back-Top
+            vertices.Add(new Vector3(xPos, perlinY - 20f, halfDepth)); // Back-Bottom
+        }
+
+        // Generate the triangles for the sub-meshes
+        for (int i = 0; i < verticesPerChunk; i++)
+        {
             int vertIndex = i * 4;
 
-            // --- VERTICES ARE NOW CENTERED AROUND Z=0 ---
-            // Front-Top vertex (now at -halfDepth)
-            vertices[vertIndex + 0] = new Vector3(xPos, perlinY, -halfDepth);
-            // Front-Bottom vertex
-            vertices[vertIndex + 1] = new Vector3(xPos, perlinY - 20f, -halfDepth);
-            // Back-Top vertex (now at +halfDepth)
-            vertices[vertIndex + 2] = new Vector3(xPos, perlinY, halfDepth);
-            // Back-Bottom vertex
-            vertices[vertIndex + 3] = new Vector3(xPos, perlinY - 20f, halfDepth);
-            // ------------------------------------------
+            // Vertex indices for the current quad and the next one
+            int currentFrontTop = vertIndex + 0;
+            int currentFrontBottom = vertIndex + 1;
+            int currentBackTop = vertIndex + 2;
+            int currentBackBottom = vertIndex + 3;
 
-            if (i < verticesPerChunk)
-            {
-                // This triangle logic remains the same
-                int triIndex = i * 18;
-                int currentFrontTop = vertIndex + 0;
-                int currentBackTop = vertIndex + 2;
-                int nextFrontTop = vertIndex + 4;
-                int nextBackTop = vertIndex + 6;
-                triangles[triIndex + 0] = currentFrontTop;
-                triangles[triIndex + 1] = nextBackTop;
-                triangles[triIndex + 2] = nextFrontTop;
-                triangles[triIndex + 3] = currentFrontTop;
-                triangles[triIndex + 4] = currentBackTop;
-                triangles[triIndex + 5] = nextBackTop;
+            int nextFrontTop = vertIndex + 4;
+            int nextFrontBottom = vertIndex + 5;
+            int nextBackTop = vertIndex + 6;
 
-                int currentFrontBottom = vertIndex + 1;
-                int nextFrontBottom = vertIndex + 5;
-                triangles[triIndex + 6] = currentFrontBottom;
-                triangles[triIndex + 7] = nextFrontTop;
-                triangles[triIndex + 8] = nextFrontBottom;
-                triangles[triIndex + 9] = currentFrontBottom;
-                triangles[triIndex + 10] = currentFrontTop;
-                triangles[triIndex + 11] = nextFrontTop;
+            // 1. Top Face (Goes into topTriangles list)
+            topTriangles.Add(currentFrontTop);
+            topTriangles.Add(nextBackTop);
+            topTriangles.Add(nextFrontTop);
+            topTriangles.Add(currentFrontTop);
+            topTriangles.Add(currentBackTop);
+            topTriangles.Add(nextBackTop);
 
-                int nextBackBottom = vertIndex + 7;
-                int currentBackBottom = vertIndex + 3;
-                triangles[triIndex + 12] = currentBackBottom;
-                triangles[triIndex + 13] = nextBackBottom;
-                triangles[triIndex + 14] = nextBackTop;
-                triangles[triIndex + 15] = currentBackBottom;
-                triangles[triIndex + 16] = nextBackTop;
-                triangles[triIndex + 17] = currentBackTop;
-            }
+            // 2. Front Face (Goes into sideTriangles list)
+            sideTriangles.Add(currentFrontBottom);
+            sideTriangles.Add(currentFrontTop);
+            sideTriangles.Add(nextFrontTop);
+            sideTriangles.Add(currentFrontBottom);
+            sideTriangles.Add(nextFrontTop);
+            sideTriangles.Add(nextFrontBottom);
         }
-        mesh.vertices = vertices;
-        mesh.triangles = triangles;
+
+        // --- APPLY TO MESH ---
+        mesh.vertices = vertices.ToArray();
+        mesh.subMeshCount = 2; // Tell the mesh it has two parts
+
+        // Set the triangles for each part
+        mesh.SetTriangles(topTriangles.ToArray(), 0); // Sub-mesh 0
+        mesh.SetTriangles(sideTriangles.ToArray(), 1); // Sub-mesh 1
+
         mesh.RecalculateNormals();
         mesh.RecalculateBounds();
+
         meshFilter.mesh = mesh;
         meshCollider.sharedMesh = mesh;
+
+        // Assign the array of materials to the renderer
+        meshRenderer.materials = new Material[] { topMaterial, sideMaterial };
     }
 }

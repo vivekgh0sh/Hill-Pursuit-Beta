@@ -1,8 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-// THIS IS THE MISSING PART!
-// This class defines what a "wheel" is for our controller.
 [System.Serializable]
 public class WheelInfo
 {
@@ -12,16 +10,17 @@ public class WheelInfo
     public bool hasMotor = true;
 }
 
-// This is your main controller class
 public class CarController : MonoBehaviour
 {
     [Header("Car Settings")]
-    public float motorForce = 1500f;
-    public float brakeForce = 3000f;
-    public Transform centerOfMass;
+    public float motorForce = 12000f;
+    public float activeBrakeForce = 3000f;
+    public float airControlTorque = 1000f;
+    public float stoppedSpeedThreshold = 0.1f;
 
-    [Header("Wheel Setup")]
-    public WheelInfo[] wheels; // Now it knows what WheelInfo is
+    [Header("References")]
+    public Transform centerOfMass;
+    public WheelInfo[] wheels;
 
     private float verticalInput;
     private Rigidbody rb;
@@ -43,59 +42,8 @@ public class CarController : MonoBehaviour
 
     void FixedUpdate()
     {
-        ApplyMotorAndBrake();
-        EnforceRotationConstraint();
-    }
-
-    void EnforceRotationConstraint()
-    {
-        // --- PART 1: KILL ROTATIONAL VELOCITY ---
-        // Get the current angular velocity
-        Vector3 currentAngularVelocity = rb.angularVelocity;
-
-        // Create a new velocity with the Z component forced to zero
-        Vector3 correctedAngularVelocity = new Vector3(currentAngularVelocity.x, currentAngularVelocity.y, 0f);
-
-        // Apply the corrected velocity. This stops any existing roll dead in its tracks.
-        rb.angularVelocity = correctedAngularVelocity;
-
-
-        // --- PART 2: CORRECT THE ROTATION (as before) ---
-        // Get the current rotation in Euler angles
-        Vector3 currentEulerAngles = rb.rotation.eulerAngles;
-
-        // Create the new, corrected rotation
-        Quaternion correctedRotation = Quaternion.Euler(currentEulerAngles.x, currentEulerAngles.y, 0f);
-
-        // Apply the corrected rotation
-        rb.rotation = correctedRotation;
-    } 
-
-    void ApplyMotorAndBrake()
-    {
-        float currentBrakeForce = 0f;
-
-        if (verticalInput < 0)
-        {
-            currentBrakeForce = brakeForce;
-        }
-
-        foreach (var wheel in wheels)
-        {
-            if (wheel.hasMotor)
-            {
-                wheel.collider.motorTorque = verticalInput * motorForce;
-            }
-
-            if (wheel.canSteer) // Front wheels
-            {
-                wheel.collider.brakeTorque = currentBrakeForce;
-            }
-            else // Rear wheels
-            {
-                wheel.collider.brakeTorque = currentBrakeForce * 0.5f;
-            }
-        }
+        ApplyDrivingForces();
+        ApplyAirControl();
     }
 
     void HandleInput()
@@ -104,14 +52,51 @@ public class CarController : MonoBehaviour
         var pointer = Pointer.current;
         if (pointer == null || !pointer.press.isPressed) return;
 
-        if (pointer.position.ReadValue().x > Screen.width / 2)
+        if (pointer.position.ReadValue().x > Screen.width / 2) { verticalInput = 1; }
+        else { verticalInput = -1; }
+    }
+
+    // --- REWRITTEN WITH RIGIDBODY.SLEEP() ---
+    void ApplyDrivingForces()
+    {
+        // If the player gives any input, make sure the Rigidbody is awake
+        if (verticalInput != 0)
         {
-            verticalInput = 1; // Accelerate
+            rb.WakeUp();
         }
-        else
+
+        // Determine motor and brake for the entire car
+        float targetMotorTorque = motorForce * verticalInput;
+        float targetBrakeTorque = 0f;
+
+        // Active braking
+        if (verticalInput < 0)
         {
-            verticalInput = -1; // Brake
+            targetBrakeTorque = activeBrakeForce;
         }
+
+        // Apply to all wheels
+        foreach (var wheel in wheels)
+        {
+            if (wheel.hasMotor)
+            {
+                wheel.collider.motorTorque = targetMotorTorque;
+            }
+            wheel.collider.brakeTorque = targetBrakeTorque;
+        }
+
+        // If we are idle AND the car is very slow, put it to sleep
+        if (verticalInput == 0 && rb.linearVelocity.magnitude < stoppedSpeedThreshold)
+        {
+            rb.Sleep();
+        }
+    }
+
+    void ApplyAirControl()
+    {
+        bool isGrounded = false;
+        foreach (var wheel in wheels) { if (wheel.collider.isGrounded) { isGrounded = true; break; } }
+        if (!isGrounded) { rb.AddTorque(Vector3.forward * -verticalInput * airControlTorque); }
     }
 
     void UpdateWheelVisuals()
