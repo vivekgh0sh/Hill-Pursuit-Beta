@@ -1,27 +1,45 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+[System.Serializable]
+public class ThemeInfo
+{
+    public string themeName; // For organizing in the Inspector (e.g., "Grasslands", "Ice Caves")
+
+    [Tooltip("The block for the top-most, drivable surface.")]
+    public GameObject topBlockPrefab;
+
+    [Tooltip("The list of blocks to stack underneath the top block, in order from top to bottom.")]
+    public List<GameObject> undergroundBlockPrefabs;
+
+    [Tooltip("How many chunks this theme should last for before switching to the next one.")]
+    public int themeLengthInChunks = 15;
+}
+
 public class TerrainGenerator : MonoBehaviour
 {
     [Header("References")]
     public Transform player;
     public GameObject terrainChunkPrefab;
 
-    [Header("Visuals")]
-    [Tooltip("The top-layer block prefab (e.g., ground_cube_grass). Collider MUST be disabled.")]
-    public GameObject grassBlockPrefab; // Renamed for clarity
-    [Tooltip("The block prefab to stack underneath the top layer. Collider MUST be disabled.")]
-    public GameObject dirtBlockPrefab; // --- NEW ---
-    [Tooltip("How many blocks to place per unit of distance. Higher = more dense.")]
-    public float blockDensity = 1.0f;
-    [Tooltip("How far down the dirt blocks should be generated.")]
-    public float groundBedrockLevel = -15f; // --- NEW ---
+    // --- NEW THEME MANAGEMENT SYSTEM ---
+    [Header("Theme Management")]
+    [Tooltip("The list of all possible themes/biomes for the game.")]
+    public ThemeInfo[] themes;
 
-    [Tooltip("The final fine-tuning knob. Use a small positive value (like 0.05) to push the ground UP and close the last pixel gap.")]
-    public float verticalOffset = 0f;
+    // Private variables to track our current theme
+    private int currentThemeIndex = 0;
+    private int chunksInCurrentTheme = 0;
+    // --- END OF NEW SYSTEM ---
 
     [Header("Terrain Settings")]
     public float chunkLength = 50f;
+    [Tooltip("How many blocks to place per unit of distance. Higher = more dense.")]
+    public float blockDensity = 1.0f;
+    [Tooltip("The y-position where dirt generation stops completely.")]
+    public float groundBedrockLevel = -15f;
+
+    // Per-theme settings are now inside ThemeInfo
     public float terrainHeight = 10f;
     public float noiseScale = 0.07f;
 
@@ -36,9 +54,9 @@ public class TerrainGenerator : MonoBehaviour
     {
         seed = Random.Range(0f, 100f);
 
-        if (grassBlockPrefab == null || dirtBlockPrefab == null)
+        if (themes == null || themes.Length == 0)
         {
-            Debug.LogError("The 'Grass Block Prefab' or 'Dirt Block Prefab' is not assigned! Disabling generator.", this);
+            Debug.LogError("No themes are assigned in the TerrainGenerator! Please create at least one theme.", this);
             this.enabled = false;
             return;
         }
@@ -60,10 +78,28 @@ public class TerrainGenerator : MonoBehaviour
 
     void SpawnChunk()
     {
+        // --- THEME SWITCHING LOGIC ---
+        // Get the current theme's data
+        ThemeInfo currentTheme = themes[currentThemeIndex];
+
+        // Check if it's time to switch to the next theme
+        if (chunksInCurrentTheme >= currentTheme.themeLengthInChunks)
+        {
+            // Move to the next theme index, wrapping around if we reach the end
+            currentThemeIndex = (currentThemeIndex + 1) % themes.Length;
+            // Get the new theme's data
+            currentTheme = themes[currentThemeIndex];
+            // Reset the chunk counter for the new theme
+            chunksInCurrentTheme = 0;
+        }
+
         GameObject newChunk = Instantiate(terrainChunkPrefab, new Vector3(spawnX, 0, 0), Quaternion.identity);
-        GenerateChunkContent(newChunk);
+        // Pass the chosen theme's data to the generation function
+        GenerateChunkContent(newChunk, currentTheme);
+
         activeChunks.Enqueue(newChunk);
         spawnX += chunkLength;
+        chunksInCurrentTheme++; // Increment counter for the current theme
     }
 
     void DestroyOldestChunk()
@@ -75,11 +111,11 @@ public class TerrainGenerator : MonoBehaviour
         }
     }
 
-    // --- FINAL VERSION OF THIS FUNCTION ---
-    void GenerateChunkContent(GameObject chunk)
+    // --- FINAL, UPGRADED GENERATION FUNCTION ---
+    void GenerateChunkContent(GameObject chunk, ThemeInfo theme)
     {
-        // --- PART 1: SHARED SETUP ---
-        float blockSize = grassBlockPrefab.transform.localScale.x;
+        // Part 1: Setup and Collider Generation
+        float blockSize = theme.topBlockPrefab.transform.localScale.x;
         int blocksToSpawn = Mathf.CeilToInt(chunkLength / blockSize * blockDensity);
         float placementStep = chunkLength / blocksToSpawn;
         float startX = chunk.transform.position.x;
@@ -88,12 +124,11 @@ public class TerrainGenerator : MonoBehaviour
         MeshCollider meshCollider = chunk.GetComponent<MeshCollider>();
         chunk.GetComponent<MeshRenderer>().enabled = false;
         List<Vector3> collisionVertices = new List<Vector3>();
-        List<int> collisionTriangles = new List<int>();
+        List<int> collisionTriangles = new List<int>(); // This is the correct variable
 
-        // --- PART 2: SINGLE LOOP TO BUILD EVERYTHING ---
+        // Part 2: Loop to Build Everything
         for (int i = 0; i < blocksToSpawn; i++)
         {
-            // A. Calculate position and rotation
             float xPos = i * placementStep;
             float yPos = Mathf.PerlinNoise((startX + xPos) * noiseScale, seed) * terrainHeight;
             float nextXPos = xPos + 0.1f;
@@ -101,8 +136,9 @@ public class TerrainGenerator : MonoBehaviour
             float angle = Mathf.Atan2(nextYPos - yPos, nextXPos - xPos) * Mathf.Rad2Deg;
             Quaternion rotation = Quaternion.Euler(0, 0, angle);
 
-            // B. Build the INVISIBLE COLLIDER segment for this block (This is perfectly aligned with the car's wheels)
             Vector3 colliderCenter = new Vector3(xPos, yPos, 0);
+
+            // Build the invisible "blocky" collider segment
             Vector3 halfWidth = rotation * Vector3.right * (blockSize / 2f);
             Vector3 halfDepth = Vector3.forward * 10;
             Vector3 topLeft = colliderCenter - halfWidth - halfDepth;
@@ -113,37 +149,45 @@ public class TerrainGenerator : MonoBehaviour
             collisionVertices.AddRange(new[] { topLeft, topRight, btmLeft, btmRight });
             collisionTriangles.AddRange(new[] { vertIndex, vertIndex + 3, vertIndex + 1, vertIndex, vertIndex + 2, vertIndex + 3 });
 
-            // C. Place the VISIBLE BLOCKS for this segment
-            // This is the automatic offset to align the block's center with its top edge.
-            float automaticOffset = blockSize / 2f;
+            // Place the VISIBLE top block
+            Vector3 verticalOffset = rotation * Vector3.up * (blockSize / 2f);
+            Vector3 grassBlockLocalPosition = colliderCenter - verticalOffset;
+            GameObject topBlock = Instantiate(theme.topBlockPrefab, chunk.transform);
+            topBlock.transform.localPosition = grassBlockLocalPosition;
+            topBlock.transform.localRotation = rotation;
 
-            // --- THE FINAL FIX IS HERE ---
-            // We combine the automatic offset with your manual fine-tuning knob.
-            // A positive verticalOffset REDUCES the amount we pull the block down, effectively pushing it UP.
-            float totalOffset = automaticOffset - this.verticalOffset;
+            // --- NEW MULTI-LAYER STACKING LOGIC ---
+            Vector3 currentUndergroundPosition = grassBlockLocalPosition + (Vector3.down * blockSize);
 
-            Vector3 finalOffsetVector = rotation * Vector3.up * totalOffset;
-            Vector3 grassBlockLocalPosition = colliderCenter - finalOffsetVector;
-
-            // Instantiate grass block
-            GameObject grassBlock = Instantiate(grassBlockPrefab);
-            grassBlock.transform.SetParent(chunk.transform, false);
-            grassBlock.transform.localPosition = grassBlockLocalPosition;
-            grassBlock.transform.localRotation = rotation;
-
-            // Instantiate dirt blocks
-            Vector3 currentDirtPosition = grassBlockLocalPosition + (Vector3.down * blockSize);
-            while (currentDirtPosition.y > groundBedrockLevel)
+            // 1. Place the defined layers from the theme list first
+            if (theme.undergroundBlockPrefabs != null)
             {
-                GameObject dirtBlock = Instantiate(dirtBlockPrefab);
-                dirtBlock.transform.SetParent(chunk.transform, false);
-                dirtBlock.transform.localPosition = currentDirtPosition;
-                dirtBlock.transform.localRotation = Quaternion.identity;
-                currentDirtPosition += Vector3.down * blockSize;
+                foreach (GameObject layerPrefab in theme.undergroundBlockPrefabs)
+                {
+                    if (currentUndergroundPosition.y <= groundBedrockLevel) break;
+
+                    GameObject dirtBlock = Instantiate(layerPrefab, chunk.transform);
+                    dirtBlock.transform.localPosition = currentUndergroundPosition;
+                    dirtBlock.transform.localRotation = Quaternion.identity;
+                    currentUndergroundPosition += Vector3.down * blockSize;
+                }
+            }
+
+            // 2. Fill remaining space with the LAST layer type, if any layers were defined
+            if (theme.undergroundBlockPrefabs != null && theme.undergroundBlockPrefabs.Count > 0)
+            {
+                GameObject lastLayerPrefab = theme.undergroundBlockPrefabs[theme.undergroundBlockPrefabs.Count - 1];
+                while (currentUndergroundPosition.y > groundBedrockLevel)
+                {
+                    GameObject dirtBlock = Instantiate(lastLayerPrefab, chunk.transform);
+                    dirtBlock.transform.localPosition = currentUndergroundPosition;
+                    dirtBlock.transform.localRotation = Quaternion.identity;
+                    currentUndergroundPosition += Vector3.down * blockSize;
+                }
             }
         }
 
-        // --- PART 3: FINALIZE THE COLLISION MESH ---
+        // Part 3: Finalize Collision Mesh
         collisionMesh.vertices = collisionVertices.ToArray();
         collisionMesh.triangles = collisionTriangles.ToArray();
         collisionMesh.RecalculateNormals();
