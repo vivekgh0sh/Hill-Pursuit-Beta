@@ -14,6 +14,7 @@ public class ThemeInfo
 
     [Tooltip("How many chunks this theme should last for before switching to the next one.")]
     public int themeLengthInChunks = 15;
+
 }
 
 public class TerrainGenerator : MonoBehaviour
@@ -38,6 +39,9 @@ public class TerrainGenerator : MonoBehaviour
     public float blockDensity = 1.0f;
     [Tooltip("The y-position where dirt generation stops completely.")]
     public float groundBedrockLevel = -15f;
+
+    [Tooltip("The final fine-tuning knob. Use a small positive value (like 0.05) to push all visual blocks UP and close the last pixel gap.")]
+    public float verticalOffset = 0f;
 
     // Per-theme settings are now inside ThemeInfo
     public float terrainHeight = 10f;
@@ -124,7 +128,7 @@ public class TerrainGenerator : MonoBehaviour
         MeshCollider meshCollider = chunk.GetComponent<MeshCollider>();
         chunk.GetComponent<MeshRenderer>().enabled = false;
         List<Vector3> collisionVertices = new List<Vector3>();
-        List<int> collisionTriangles = new List<int>(); // This is the correct variable
+        List<int> collisionTriangles = new List<int>();
 
         // Part 2: Loop to Build Everything
         for (int i = 0; i < blocksToSpawn; i++)
@@ -149,15 +153,18 @@ public class TerrainGenerator : MonoBehaviour
             collisionVertices.AddRange(new[] { topLeft, topRight, btmLeft, btmRight });
             collisionTriangles.AddRange(new[] { vertIndex, vertIndex + 3, vertIndex + 1, vertIndex, vertIndex + 2, vertIndex + 3 });
 
-            // Place the VISIBLE top block
-            Vector3 verticalOffset = rotation * Vector3.up * (blockSize / 2f);
-            Vector3 grassBlockLocalPosition = colliderCenter - verticalOffset;
+            // Place the VISIBLE top block using the verticalOffset
+            float automaticOffset = blockSize / 2f;
+            float totalOffset = automaticOffset - this.verticalOffset;
+            Vector3 finalOffsetVector = rotation * Vector3.up * totalOffset;
+            Vector3 topBlockLocalPosition = colliderCenter - finalOffsetVector;
+
             GameObject topBlock = Instantiate(theme.topBlockPrefab, chunk.transform);
-            topBlock.transform.localPosition = grassBlockLocalPosition;
+            topBlock.transform.localPosition = topBlockLocalPosition;
             topBlock.transform.localRotation = rotation;
 
             // --- NEW MULTI-LAYER STACKING LOGIC ---
-            Vector3 currentUndergroundPosition = grassBlockLocalPosition + (Vector3.down * blockSize);
+            Vector3 currentUndergroundPosition = topBlockLocalPosition + (Vector3.down * blockSize);
 
             // 1. Place the defined layers from the theme list first
             if (theme.undergroundBlockPrefabs != null)
