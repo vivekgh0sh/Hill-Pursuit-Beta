@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df26ffde5043147469ed21d435177818, type: 3}
   m_Name: 1
   m_EditorClassIdentifier: Assembly-CSharp::carData1
-  carName: 1
+  carName: Fiat 500
   carID: 1
   carPrefab: {fileID: 8165676926512822565, guid: 85fae68129688b84fa65f57fd1703aac, type: 3}
   carIcon: {fileID: 0}

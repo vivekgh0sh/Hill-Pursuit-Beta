@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df26ffde5043147469ed21d435177818, type: 3}
   m_Name: 5
   m_EditorClassIdentifier: Assembly-CSharp::CarData
-  carName: 5
+  carName: Ford GT40
   carID: 5
   carPrefab: {fileID: 291146906746882118, guid: 3d610158cf60e6346aa708e269594155, type: 3}
   carIcon: {fileID: 0}

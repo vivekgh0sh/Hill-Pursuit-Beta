@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df26ffde5043147469ed21d435177818, type: 3}
   m_Name: 6
   m_EditorClassIdentifier: Assembly-CSharp::CarData
-  carName: 6
+  carName: Porsche 908 Spyder
   carID: 6
   carPrefab: {fileID: 73810984305068448, guid: edda2ade6a397a64a8fef13ced619bf6, type: 3}
   carIcon: {fileID: 0}

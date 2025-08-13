@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df26ffde5043147469ed21d435177818, type: 3}
   m_Name: 9
   m_EditorClassIdentifier: Assembly-CSharp::CarData
-  carName: 9
+  carName: McLaren M7A
   carID: 9
   carPrefab: {fileID: 2704782656898304025, guid: 1a3c02c2a3007054b8edda389dfe3b99, type: 3}
   carIcon: {fileID: 0}

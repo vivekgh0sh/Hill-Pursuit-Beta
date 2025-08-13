@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df26ffde5043147469ed21d435177818, type: 3}
   m_Name: 3
   m_EditorClassIdentifier: Assembly-CSharp::CarData
-  carName: 3
+  carName: Alfa Romeo Giulia Sprint GTA
   carID: 3
   carPrefab: {fileID: 2084301420009532940, guid: 718a313b944f46a49a9d9936a4484b0e, type: 3}
   carIcon: {fileID: 0}
