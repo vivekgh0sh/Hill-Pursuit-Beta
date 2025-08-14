@@ -1035,6 +1035,16 @@ MonoBehaviour:
   activeBrakeForce: 6000
   airControlTorque: 2000
   stoppedSpeedThreshold: 0.1
+  maxFuel: 100
+  fuelDepletionRate: 1
+  maxBoost: 25000
+  boostForce: 25000
+  boostDepletionRate: 20
+  boostRegenRate: 5
+  isBoosting: 0
+  flipTorque: 3000
+  boostRewardForFlip: 30
+  flipCooldown: 5
   centerOfMass: {fileID: 1115026651922614789}
   wheels:
   - collider: {fileID: 5045685014097023095}

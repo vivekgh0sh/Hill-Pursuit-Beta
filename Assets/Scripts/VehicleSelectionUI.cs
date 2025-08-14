@@ -134,6 +134,7 @@ public class VehicleSelectionUI : MonoBehaviour
 
     public void StartGame()
     {
+        this.enabled = false;
         GameManager.Instance.SaveGameData();
         SceneManager.LoadScene("endless");
     }
