@@ -804,7 +804,7 @@ GameObject:
   - component: {fileID: 5916210789447777024}
   m_Layer: 10
   m_Name: 1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -842,7 +842,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8165676926512822565}
   serializedVersion: 5
-  m_Mass: 1000
+  m_Mass: 800
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -880,8 +880,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1.0399323, z: 2.0379837}
-  m_Center: {x: 1.9883548e-16, y: 0.59144974, z: -0.11100817}
+  m_Size: {x: 1, y: 0.78, z: 2.25}
+  m_Center: {x: 1.9883548e-16, y: 0.65, z: -0.05}
 --- !u!114 &5916210789447777024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -900,14 +900,16 @@ MonoBehaviour:
   stoppedSpeedThreshold: 0.1
   maxFuel: 100
   fuelDepletionRate: 1
+  currentFuel: 0
   maxBoost: 25000
   boostForce: 25000
-  boostDepletionRate: 20
-  boostRegenRate: 5
+  boostDepletionRate: 2000
+  boostRegenRate: 2000
   isBoosting: 0
-  flipTorque: 3000
+  flipTorque: 2000
   boostRewardForFlip: 30
   flipCooldown: 5
+  stuckTimeThreshold: 3
   centerOfMass: {fileID: 4500417906459282035}
   wheels:
   - collider: {fileID: 7542689742269770292}
@@ -918,11 +920,11 @@ MonoBehaviour:
     visual: {fileID: 7613583851608648414}
     canSteer: 1
     hasMotor: 1
-  - collider: {fileID: 535368891749830762}
-    visual: {fileID: 780771669524602263}
-    canSteer: 0
-    hasMotor: 1
   - collider: {fileID: 8594526912038484586}
     visual: {fileID: 6379279930790964111}
+    canSteer: 0
+    hasMotor: 1
+  - collider: {fileID: 535368891749830762}
+    visual: {fileID: 780771669524602263}
     canSteer: 0
     hasMotor: 1

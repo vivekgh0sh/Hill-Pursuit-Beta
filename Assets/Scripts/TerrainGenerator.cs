@@ -1,3 +1,5 @@
+// --- START OF FILE TerrainGenerator.cs (REVISED) ---
+
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -7,11 +9,6 @@ public class ThemeInfo
     public string themeName;
     public GameObject topBlockPrefab;
     public List<GameObject> undergroundBlockPrefabs;
-
-    // --- REPLACE THIS LINE ---
-    // public int themeLengthInChunks = 15;
-
-    // --- WITH THIS LINE ---
     [Tooltip("The Min (X) and Max (Y) number of chunks this theme should last for.")]
     public Vector2Int themeLengthInChunksRange = new Vector2Int(15, 25);
 }
@@ -22,22 +19,33 @@ public class TerrainGenerator : MonoBehaviour
     public Transform player;
     public GameObject terrainChunkPrefab;
 
-    [Header("Theme Management")]
-    [Tooltip("The list of all possible themes/biomes for the game.")]
-    public ThemeInfo[] themes;
+    [Header("Collectible Settings")]
+    public GameObject collectiblePrefab;
+    [Range(0f, 1f)]
+    public float collectibleSpawnChance = 0.1f;
+    public float collectibleVerticalOffset = 1.5f;
 
-    // --- UPGRADED THEME TRACKING VARIABLES ---
-    private int currentThemeIndex = -1; // Start at -1 to ensure first pick is always random
+    // --- ADD THESE NEW VARIABLES ---
+    [Header("Fuel Can Settings")]
+    [Tooltip("The prefab for the fuel can collectible.")]
+    public GameObject fuelCollectiblePrefab;
+    [Tooltip("The Min (X) and Max (Y) distance in meters between fuel can spawns.")]
+    public Vector2 fuelSpawnIntervalRange = new Vector2(300f, 500f);
+    [Tooltip("How high above the terrain the fuel can should spawn.")]
+    public float fuelVerticalOffset = 1.0f;
+    private float nextFuelSpawnX; // Tracks the world X-coordinate for the next fuel spawn
+    // --- END OF ADDED VARIABLES ---
+
+    [Header("Theme Management")]
+    public ThemeInfo[] themes;
+    private int currentThemeIndex = -1;
     private int chunksSinceLastSwitch = 0;
-    private int lengthOfCurrentThemeRun; // The randomized length for the current biome instance
+    private int lengthOfCurrentThemeRun;
 
     [Header("Terrain Settings")]
     public float chunkLength = 50f;
-    [Tooltip("How many blocks to place per unit of distance. Higher = more dense.")]
     public float blockDensity = 1.0f;
-    [Tooltip("The y-position where dirt generation stops completely.")]
     public float groundBedrockLevel = -15f;
-    [Tooltip("The final fine-tuning knob. Use a small positive value (like 0.05) to push all visual blocks UP and close the last pixel gap.")]
     public float verticalOffset = 0f;
     public float terrainHeight = 10f;
     public float noiseScale = 0.07f;
@@ -46,7 +54,6 @@ public class TerrainGenerator : MonoBehaviour
     public int chunksVisibleAhead = 3;
     private float spawnX = 0.0f;
     private float seed;
-
     private Queue<GameObject> activeChunks = new Queue<GameObject>();
 
     void Start()
@@ -55,18 +62,26 @@ public class TerrainGenerator : MonoBehaviour
 
         if (themes == null || themes.Length == 0)
         {
-            Debug.LogError("No themes are assigned in the TerrainGenerator! Please create at least one theme.", this);
+            Debug.LogError("No themes are assigned in the TerrainGenerator!", this);
             this.enabled = false;
             return;
         }
 
-        // Pick the very first theme and set its initial random length
         SwitchToRandomTheme();
+
+        // --- ADD THIS LINE: Set the first fuel spawn location ---
+        SetNextFuelSpawnPoint();
 
         for (int i = 0; i < chunksVisibleAhead; i++)
         {
             SpawnChunk();
         }
+    }
+
+    // --- ADD THIS NEW HELPER METHOD ---
+    void SetNextFuelSpawnPoint()
+    {
+        nextFuelSpawnX += Random.Range(fuelSpawnIntervalRange.x, fuelSpawnIntervalRange.y);
     }
 
     void Update()
@@ -81,36 +96,44 @@ public class TerrainGenerator : MonoBehaviour
     void SwitchToRandomTheme()
     {
         int oldThemeIndex = currentThemeIndex;
-
-        // Make sure we don't pick the same theme twice in a row (if there's more than one choice)
         do
         {
             currentThemeIndex = Random.Range(0, themes.Length);
         } while (currentThemeIndex == oldThemeIndex && themes.Length > 1);
-
-        // Get the new theme's data
         ThemeInfo newTheme = themes[currentThemeIndex];
-
-        // Set the random duration for this new theme run
         lengthOfCurrentThemeRun = Random.Range(newTheme.themeLengthInChunksRange.x, newTheme.themeLengthInChunksRange.y + 1);
-
-        // Reset the chunk counter for the new theme
         chunksSinceLastSwitch = 0;
     }
 
     void SpawnChunk()
     {
-        // Check if it's time to switch to a new random theme
         if (chunksSinceLastSwitch >= lengthOfCurrentThemeRun)
         {
             SwitchToRandomTheme();
         }
 
         ThemeInfo currentTheme = themes[currentThemeIndex];
-
         GameObject newChunk = Instantiate(terrainChunkPrefab, new Vector3(spawnX, 0, 0), Quaternion.identity);
-        GenerateChunkContent(newChunk, currentTheme);
 
+        // --- ADD THIS BLOCK TO SPAWN FUEL ---
+        // Check if our next fuel spawn point falls within this new chunk
+        if (fuelCollectiblePrefab != null && nextFuelSpawnX >= spawnX && nextFuelSpawnX < spawnX + chunkLength)
+        {
+            // Calculate its position on the terrain
+            float localX = nextFuelSpawnX - spawnX; // Position relative to the chunk's start
+            float yPos = Mathf.PerlinNoise(nextFuelSpawnX * noiseScale, seed) * terrainHeight;
+            Vector3 spawnPosition = new Vector3(localX, yPos + fuelVerticalOffset, 0);
+
+            // Instantiate the fuel can and parent it to the chunk
+            GameObject fuelCan = Instantiate(fuelCollectiblePrefab, newChunk.transform);
+            fuelCan.transform.localPosition = spawnPosition;
+
+            // Set the point for the *next* fuel can
+            SetNextFuelSpawnPoint();
+        }
+        // --- END OF ADDED BLOCK ---
+
+        GenerateChunkContent(newChunk, currentTheme);
         activeChunks.Enqueue(newChunk);
         spawnX += chunkLength;
         chunksSinceLastSwitch++;
@@ -125,9 +148,10 @@ public class TerrainGenerator : MonoBehaviour
         }
     }
 
-    // --- This function remains the same, it's already perfect ---
     void GenerateChunkContent(GameObject chunk, ThemeInfo theme)
     {
+        // This entire method remains unchanged.
+        // We moved the fuel spawning logic out of here for better control.
         float blockSize = theme.topBlockPrefab.transform.localScale.x;
         int blocksToSpawn = Mathf.CeilToInt(chunkLength / blockSize * blockDensity);
         float placementStep = chunkLength / blocksToSpawn;
@@ -162,6 +186,11 @@ public class TerrainGenerator : MonoBehaviour
             GameObject topBlock = Instantiate(theme.topBlockPrefab, chunk.transform);
             topBlock.transform.localPosition = topBlockLocalPosition;
             topBlock.transform.localRotation = rotation;
+            if (collectiblePrefab != null && Random.value < collectibleSpawnChance)
+            {
+                Vector3 collectiblePosition = topBlock.transform.position + new Vector3(0, collectibleVerticalOffset, 0);
+                Instantiate(collectiblePrefab, collectiblePosition, Quaternion.identity, chunk.transform);
+            }
             Vector3 currentUndergroundPosition = new Vector3(colliderCenter.x, topBlockLocalPosition.y - blockSize, colliderCenter.z);
             if (theme.undergroundBlockPrefabs != null)
             {

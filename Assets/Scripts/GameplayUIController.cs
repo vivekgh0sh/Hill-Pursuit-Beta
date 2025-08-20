@@ -1,76 +1,107 @@
+// --- START OF FILE GameplayUIController.cs (REVISED) ---
+
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
+using TMPro;
+using System.Collections;
 
-// Add these interfaces to handle press-and-hold events
-public class GameplayUIController : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+public class GameplayUIController : MonoBehaviour
 {
-    [Header("UI Elements")]
+    [Header("In-Game UI")]
     [SerializeField] private Slider fuelSlider;
     [SerializeField] private Slider boostSlider;
     [SerializeField] private Button flipButton;
-    [SerializeField] private GameObject boostButtonObject; // The GameObject of the Boost Button
+    [SerializeField] private BoostButtonHandler boostButtonHandler;
+    [SerializeField] private TextMeshProUGUI coinText;
+    [SerializeField] private TextMeshProUGUI distanceText;
 
-    // This will be assigned by the PlayerSpawner
-    [HideInInspector] public CarController carController;
+    [Header("Game Over UI")]
+    [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private TextMeshProUGUI finalDistanceText;
+    [SerializeField] private TextMeshProUGUI highscoreText;
+    [SerializeField] private TextMeshProUGUI totalCoinsText;
+    [SerializeField] private TextMeshProUGUI runCoinsText;
+    [SerializeField] private Button restartButton;
+    [SerializeField] private Button menuButton;
+
+    private CarController _carController;
+    public CarController CarController
+    {
+        get { return _carController; }
+        set
+        {
+            _carController = value;
+            if (boostButtonHandler != null)
+            {
+                boostButtonHandler.carController = _carController;
+            }
+        }
+    }
 
     void Start()
     {
-        // We only need to set up the one-shot flip button listener here
-        flipButton.onClick.AddListener(() =>
-        {
-            if (carController != null)
-            {
-                carController.PerformFlip();
-            }
-        });
+        gameOverPanel.SetActive(false);
+
+        flipButton.onClick.AddListener(() => { if (CarController != null) CarController.PerformFlip(); });
+        restartButton.onClick.AddListener(() => { if (GameManager.Instance != null) GameManager.Instance.RestartGame(); });
+        menuButton.onClick.AddListener(() => { if (GameManager.Instance != null) GameManager.Instance.GoToMenu(); });
     }
 
     void Update()
     {
-        // If we don't have a car yet, do nothing.
-        if (carController == null) return;
+        if (GameManager.Instance == null) return;
 
-        // Update the sliders every frame based on the car's public properties
-        fuelSlider.value = carController.FuelPercent;
-        boostSlider.value = carController.BoostPercent;
+        if (CarController != null)
+        {
+            fuelSlider.value = CarController.FuelPercent;
+            boostSlider.value = CarController.BoostPercent;
+        }
+
+        coinText.text = GameManager.Instance.coinsThisRun.ToString();
+        distanceText.text = GameManager.Instance.currentDistance.ToString() + "m";
     }
 
-    // This is called when a pointer (mouse or finger) presses down on ANY UI element
-    // that this script is attached to. We will attach it to the Canvas.
-    public void OnPointerDown(PointerEventData eventData)
+    public void ShowGameOverScreen(int finalDistance, int highscore, int previousTotalCoins, int collectedInRun)
     {
-        // LOG 1: See if this function is ever even called.
-        Debug.Log("OnPointerDown was called!");
+        gameOverPanel.SetActive(true);
+        finalDistanceText.text = "Distance: " + finalDistance.ToString() + "m";
+        highscoreText.text = "Highscore: " + highscore.ToString() + "m";
 
-        // LOG 2: See what UI element the system thinks we clicked.
-        Debug.Log("Pointer pressed on: " + eventData.pointerPress.name);
-
-        // Check if the object we pressed down on is our boost button
-        if (eventData.pointerPress == boostButtonObject)
-        {
-            // LOG 3: See if this specific check passes.
-            Debug.Log("SUCCESS: The pressed object IS the Boost Button!");
-            if (carController != null)
-            {
-                carController.isBoosting = true;
-            }
-        }
-        else
-        {
-            // LOG 4: See if the check fails.
-            Debug.Log("FAILURE: The pressed object was NOT the Boost Button. It was " + eventData.pointerPress.name);
-        }
+        StartCoroutine(AnimateCoins(previousTotalCoins, collectedInRun));
     }
 
-    public void OnPointerUp(PointerEventData eventData)
+    private IEnumerator AnimateCoins(int startTotal, int collected)
     {
-        // LOG 5: See if this function is called on release.
-        Debug.Log("OnPointerUp was called!");
+        restartButton.interactable = false;
+        menuButton.interactable = false;
 
-        if (carController != null && carController.isBoosting)
+        // --- CHANGE #1: Slower Animation ---
+        // Increased duration from 1.5f to 2.5f. You can adjust this value for the perfect speed.
+        float duration = 2.5f;
+        float elapsedTime = 0f;
+
+        int finalTotal = startTotal + collected;
+
+        while (elapsedTime < duration)
         {
-            carController.isBoosting = false;
+            elapsedTime += Time.unscaledDeltaTime;
+            float progress = elapsedTime / duration;
+
+            int currentRunDisplay = (int)Mathf.Lerp(collected, 0, progress);
+            int currentTotalDisplay = (int)Mathf.Lerp(startTotal, finalTotal, progress);
+
+            // --- CHANGE #2: New Text Format ---
+            runCoinsText.text = "Gained: + " + currentRunDisplay.ToString();
+            totalCoinsText.text = "Stars: " + currentTotalDisplay.ToString();
+
+            yield return null;
         }
+
+        // --- CHANGE #3: Ensure Final Text Format is Correct ---
+        runCoinsText.text = "Gained: + 0";
+        totalCoinsText.text = "Stars: " + finalTotal.ToString();
+
+        restartButton.interactable = true;
+        menuButton.interactable = true;
     }
 }

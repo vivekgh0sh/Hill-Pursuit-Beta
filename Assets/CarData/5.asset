@@ -16,7 +16,7 @@ MonoBehaviour:
   carID: 5
   carPrefab: {fileID: 291146906746882118, guid: 3d610158cf60e6346aa708e269594155, type: 3}
   carIcon: {fileID: 0}
-  unlockCost: 0
+  unlockCost: 1000
   isUnlockedByDefault: 0
   displayPositionOffset: {x: 0, y: 0, z: 0}
   displayRotation: {x: 0, y: 0, z: 0}

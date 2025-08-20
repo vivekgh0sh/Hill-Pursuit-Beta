@@ -1,3 +1,5 @@
+// --- START OF FILE VehicleSelectionUI.cs (CORRECTED) ---
+
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -16,6 +18,7 @@ public class VehicleSelectionUI : MonoBehaviour
     [SerializeField] private Button startButton;
 
     [Header("UI Elements")]
+    [SerializeField] private TextMeshProUGUI totalCoinsText;
     [SerializeField] private TextMeshProUGUI carNameText;
     [SerializeField] private TextMeshProUGUI unlockCostText;
 
@@ -33,15 +36,33 @@ public class VehicleSelectionUI : MonoBehaviour
 
         currentCarIndex = GameManager.Instance.selectedCarIndex;
 
+        // Note: It's better practice to add all listeners in code
+        // or set them all in the inspector, not mix them.
+        // But for now, we'll keep your existing setup.
         leftButton.onClick.AddListener(PreviousCar);
         unlockButton.onClick.AddListener(UnlockCar);
         startButton.onClick.AddListener(StartGame);
-
+        // Assuming rightButton is set up in the Inspector's OnClick() event
+        UpdateCoinDisplay();
         DisplayCar();
+    }
+
+    void UpdateCoinDisplay()
+    {
+        if (GameManager.Instance != null)
+        {
+            totalCoinsText.text = GameManager.Instance.coins.ToString();
+        }
     }
 
     void DisplayCar()
     {
+        if (GameManager.Instance.allCars == null || GameManager.Instance.allCars.Count == 0)
+        {
+            Debug.LogError("GameManager 'allCars' list is not set up!");
+            return;
+        }
+
         currentCarIndex = Mathf.Clamp(currentCarIndex, 0, GameManager.Instance.allCars.Count - 1);
         currentCarData = GameManager.Instance.allCars[currentCarIndex];
 
@@ -124,27 +145,28 @@ public class VehicleSelectionUI : MonoBehaviour
         if (GameManager.Instance.CanAfford(cost))
         {
             GameManager.Instance.SpendCoins(cost);
-
             GameManager.Instance.UnlockCar(currentCarData.carID);
-
+            UpdateCoinDisplay();
             DisplayCar();
         }
-
     }
 
+    // --- THIS IS THE FIX ---
     public void StartGame()
     {
-        this.enabled = false;
+        // this.enabled = false; // <-- THIS LINE WAS THE PROBLEM AND HAS BEEN REMOVED.
         GameManager.Instance.SaveGameData();
         SceneManager.LoadScene("endless");
     }
+
     void Update()
     {
-        if (showroomCarAnchor.childCount > 0)
+        if (showroomCarAnchor != null && showroomCarAnchor.childCount > 0)
         {
             showroomCarAnchor.GetChild(0).Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
         }
     }
+
     void SetLayerRecursively(GameObject obj, int newLayer)
     {
         if (obj == null) return;

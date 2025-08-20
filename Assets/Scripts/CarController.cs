@@ -1,4 +1,4 @@
-// --- START OF FILE CarController.cs (THE FINAL WORKING VERSION) ---
+// --- START OF FILE CarController.cs (CORRECTED & RESTORED) ---
 
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -24,12 +24,14 @@ public class CarController : MonoBehaviour
     [Header("Fuel Settings")]
     public float maxFuel = 100f;
     public float fuelDepletionRate = 1f;
+    [SerializeField]
+    [Tooltip("The current amount of fuel. This is initialized to 'Max Fuel' when the game starts.")]
     private float currentFuel;
     public float FuelPercent => currentFuel / maxFuel;
 
     [Header("Boost Settings")]
     public float maxBoost = 100f;
-    public float boostForce = 8000f; // Use a value that is a significant addition to motorForce
+    public float boostForce = 8000f;
     public float boostDepletionRate = 20f;
     public float boostRegenRate = 5f;
     private float currentBoost;
@@ -42,6 +44,11 @@ public class CarController : MonoBehaviour
     public float flipCooldown = 2f;
     private float lastFlipTime = -99f;
     private bool isGrounded;
+
+    [Header("Game Over Conditions")]
+    [Tooltip("How long the car can be flipped and stopped before game over.")]
+    public float stuckTimeThreshold = 3.0f;
+    private float timeSinceStuck = 0f;
 
     [Header("References")]
     public Transform centerOfMass;
@@ -73,6 +80,7 @@ public class CarController : MonoBehaviour
         CheckGroundedStatus();
         ApplyDrivingForces();
         ApplyAirControl();
+        CheckGameOverConditions();
     }
 
     public void PerformFlip()
@@ -85,17 +93,17 @@ public class CarController : MonoBehaviour
         }
     }
 
-    // --- THIS IS THE KEY CHANGE ---
-    // The input handling is now simpler and doesn't block itself.
+    // --- THIS METHOD HAS BEEN RESTORED TO ITS ORIGINAL, WORKING STATE ---
     void HandleInput()
     {
         verticalInput = 0;
         var pointer = Pointer.current;
         if (pointer == null || !pointer.press.isPressed) return;
 
-        // The GameplayUIController will handle setting 'isBoosting' when the boost button is pressed.
-        // This HandleInput method will ALWAYS check for driving input, regardless of what UI is pressed.
-        // This solves the conflict where pressing the boost button would stop the car from accelerating.
+        // This check was removed in the original file to allow driving while pressing the boost button.
+        // We ensure it stays removed, as intended.
+        // if (EventSystem.current.IsPointerOverGameObject()) return;
+
         if (pointer.position.ReadValue().x > Screen.width / 2)
         {
             verticalInput = 1;
@@ -106,8 +114,7 @@ public class CarController : MonoBehaviour
         }
     }
 
-    // --- THIS METHOD IS ALSO MODIFIED ---
-    // It now correctly adds the boost force to the motor torque.
+    // --- THIS METHOD HAS BEEN RESTORED TO ITS ORIGINAL, WORKING STATE ---
     void ApplyDrivingForces()
     {
         if (verticalInput != 0) { rb.WakeUp(); }
@@ -115,25 +122,17 @@ public class CarController : MonoBehaviour
         float motorInput = verticalInput > 0 && currentFuel > 0 ? verticalInput : 0;
         float finalMotorForce = motorForce;
 
-        // `isBoosting` is set by GameplayUIController.
-        // `motorInput` is set by HandleInput. They work together now.
         if (isBoosting && currentBoost > 0)
         {
             finalMotorForce += boostForce;
+            currentBoost -= boostDepletionRate * Time.fixedDeltaTime;
         }
 
         float targetMotorTorque = finalMotorForce * motorInput;
 
-        // Fuel depletion only happens on acceleration input
         if (verticalInput > 0 && currentFuel > 0)
         {
             currentFuel -= fuelDepletionRate * Time.fixedDeltaTime;
-        }
-
-        // Boost depletion happens when the boost is active, regardless of acceleration
-        if (isBoosting && currentBoost > 0)
-        {
-            currentBoost -= boostDepletionRate * Time.fixedDeltaTime;
         }
 
         float targetBrakeTorque = verticalInput < 0 ? activeBrakeForce : 0f;
@@ -143,24 +142,43 @@ public class CarController : MonoBehaviour
             if (wheel.hasMotor) { wheel.collider.motorTorque = targetMotorTorque; }
             wheel.collider.brakeTorque = targetBrakeTorque;
         }
+    }
 
-        if (verticalInput == 0 && rb.linearVelocity.magnitude < stoppedSpeedThreshold)
+    // --- THIS IS THE CORRECTLY INTEGRATED GAME OVER LOGIC ---
+    void CheckGameOverConditions()
+    {
+        if (GameManager.Instance == null || GameManager.Instance.currentState != GameManager.GameState.Playing) return;
+
+        // 1. Out of Fuel Condition
+        if (currentFuel <= 0)
         {
-            rb.Sleep();
+            GameManager.Instance.EndGame();
+            return;
+        }
+
+        // 2. Flipped and Stuck Condition
+        bool isFlipped = Vector3.Dot(transform.up, Vector3.down) > 0;
+        bool isStopped = rb.linearVelocity.magnitude < stoppedSpeedThreshold;
+
+        if (isFlipped && isStopped)
+        {
+            timeSinceStuck += Time.fixedDeltaTime;
+            if (timeSinceStuck >= stuckTimeThreshold)
+            {
+                GameManager.Instance.EndGame();
+            }
+        }
+        else
+        {
+            // Reset timer if the car is not stuck
+            timeSinceStuck = 0;
         }
     }
 
     void CheckGroundedStatus()
     {
         isGrounded = false;
-        foreach (var wheel in wheels)
-        {
-            if (wheel.collider.isGrounded)
-            {
-                isGrounded = true;
-                return;
-            }
-        }
+        foreach (var wheel in wheels) { if (wheel.collider.isGrounded) { isGrounded = true; return; } }
     }
 
     void HandleBoostRegen()
@@ -172,23 +190,12 @@ public class CarController : MonoBehaviour
         }
     }
 
-    // --- THIS METHOD IS REMOVED ---
-    /*
-    void ApplyBoostForce()
-    {
-        if (isBoosting && currentBoost > 0)
-        {
-            rb.AddForce(transform.right * boostForce, ForceMode.Force);
-            currentBoost -= boostDepletionRate * Time.fixedDeltaTime;
-        }
-    }
-    */
-
     void ApplyAirControl()
     {
         if (!isGrounded) { rb.AddTorque(Vector3.forward * -verticalInput * airControlTorque); }
     }
 
+    // --- THIS METHOD IS CRITICAL FOR WHEEL ROTATION AND IS CORRECT ---
     void UpdateWheelVisuals()
     {
         foreach (var wheel in wheels)
@@ -198,5 +205,11 @@ public class CarController : MonoBehaviour
             wheel.visual.position = pos;
             wheel.visual.rotation = rot;
         }
+    }
+    public void AddFuel(float amount)
+    {
+        currentFuel += amount;
+        // Clamp the fuel so it doesn't go above the maximum
+        currentFuel = Mathf.Min(currentFuel, maxFuel);
     }
 }

@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: -5159352578570021808}
   m_Layer: 0
   m_Name: 3
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -210,14 +210,16 @@ MonoBehaviour:
   stoppedSpeedThreshold: 0.1
   maxFuel: 100
   fuelDepletionRate: 1
+  currentFuel: 0
   maxBoost: 25000
   boostForce: 25000
-  boostDepletionRate: 20
-  boostRegenRate: 5
+  boostDepletionRate: 2000
+  boostRegenRate: 2000
   isBoosting: 0
   flipTorque: 3000
   boostRewardForFlip: 30
   flipCooldown: 5
+  stuckTimeThreshold: 3
   centerOfMass: {fileID: 1577800436730726834}
   wheels:
   - collider: {fileID: 5448438118199235870}
@@ -228,12 +230,12 @@ MonoBehaviour:
     visual: {fileID: 8069846914569031608}
     canSteer: 1
     hasMotor: 1
-  - collider: {fileID: 7044913821844410169}
-    visual: {fileID: 7328259749280581662}
-    canSteer: 0
-    hasMotor: 1
   - collider: {fileID: 3995135282812368344}
     visual: {fileID: 3614322131836396384}
+    canSteer: 0
+    hasMotor: 1
+  - collider: {fileID: 7044913821844410169}
+    visual: {fileID: 7328259749280581662}
     canSteer: 0
     hasMotor: 1
 --- !u!65 &-5159352578570021808

@@ -962,7 +962,7 @@ GameObject:
   - component: {fileID: -6410845133326215584}
   m_Layer: 0
   m_Name: 9
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1033,18 +1033,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CarController
   motorForce: 12000
   activeBrakeForce: 6000
-  airControlTorque: 2000
+  airControlTorque: 1000
   stoppedSpeedThreshold: 0.1
   maxFuel: 100
   fuelDepletionRate: 1
+  currentFuel: 0
   maxBoost: 25000
   boostForce: 25000
-  boostDepletionRate: 20
-  boostRegenRate: 5
+  boostDepletionRate: 2000
+  boostRegenRate: 2000
   isBoosting: 0
   flipTorque: 3000
   boostRewardForFlip: 30
   flipCooldown: 5
+  stuckTimeThreshold: 3
   centerOfMass: {fileID: 1115026651922614789}
   wheels:
   - collider: {fileID: 5045685014097023095}

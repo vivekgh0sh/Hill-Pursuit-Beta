@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8348616161584919941
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7357214862986726812}
+  - component: {fileID: 2212128649486100359}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7357214862986726812
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8348616161584919941}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 163.27101, y: 0.00002, z: 583.66174}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2212128649486100359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8348616161584919941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d38a1cbdf720724a83d65267d858dfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  currentState: 0
+  playerTransform: {fileID: 0}
+  coins: 0
+  currentDistance: 0
+  highscore: 0
+  allCars:
+  - {fileID: 11400000, guid: 8fe61953bcc639a44bcbd4cf900ca170, type: 2}
+  - {fileID: 11400000, guid: 700885f2491739947b834f3edf3ebd0b, type: 2}
+  - {fileID: 11400000, guid: efef53bd604d4994f8f2f86a1ea62b69, type: 2}
+  - {fileID: 11400000, guid: 9b026f8e7f62ef542a0d4216d9c8dc08, type: 2}
+  - {fileID: 11400000, guid: 043110f25c8d687438b33dfe58aa7e4a, type: 2}
+  - {fileID: 11400000, guid: a8848cd16dd4e70408b9ac9187b07474, type: 2}
+  - {fileID: 11400000, guid: 3a247ea4be300144d992e612179f49cd, type: 2}
+  - {fileID: 11400000, guid: e0bbc77f7b25f184294fcb428d88f070, type: 2}
+  - {fileID: 11400000, guid: f243066e0d93f2f4c9189085e9874d58, type: 2}
+  selectedCarIndex: 0
