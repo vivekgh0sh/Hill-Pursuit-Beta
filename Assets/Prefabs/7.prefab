@@ -873,7 +873,7 @@ WheelCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_ProvidesContacts: 0
 --- !u!1 &2713963292679105606
 GameObject:
@@ -1176,22 +1176,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 341b0e03e1b4f7e46a81d6378a49c9e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarController
-  motorForce: 12000
+  motorForce: 6000
   activeBrakeForce: 6000
-  airControlTorque: 1000
-  stoppedSpeedThreshold: 0.1
-  maxFuel: 100
+  airControlTorque: 3000
+  stoppedSpeedThreshold: 6000
+  maxFuel: 50
   fuelDepletionRate: 1
   currentFuel: 0
-  maxBoost: 25000
+  maxBoost: 1000
   boostForce: 25000
-  boostDepletionRate: 2000
-  boostRegenRate: 2000
+  boostDepletionRate: 200
+  boostRegenRate: 100
   isBoosting: 0
   flipTorque: 3000
   boostRewardForFlip: 30
   flipCooldown: 5
-  stuckTimeThreshold: 3
+  stuckTimeThreshold: 2
   centerOfMass: {fileID: 7751891763587732343}
   wheels:
   - collider: {fileID: 4837043341679061776}
@@ -2077,7 +2077,7 @@ WheelCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_ProvidesContacts: 0
 --- !u!1 &6453857720432726336
 GameObject:
@@ -2508,7 +2508,7 @@ WheelCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_ProvidesContacts: 0
 --- !u!1 &7874408146997988654
 GameObject:
@@ -2668,7 +2668,7 @@ WheelCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_ProvidesContacts: 0
 --- !u!1 &8968727700689230338
 GameObject:

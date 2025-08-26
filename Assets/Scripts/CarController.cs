@@ -192,7 +192,7 @@ public class CarController : MonoBehaviour
 
     void ApplyAirControl()
     {
-        if (!isGrounded) { rb.AddTorque(Vector3.forward * -verticalInput * airControlTorque); }
+        if (!isGrounded) { rb.AddTorque(Vector3.forward * verticalInput * airControlTorque); }
     }
 
     // --- THIS METHOD IS CRITICAL FOR WHEEL ROTATION AND IS CORRECT ---

@@ -3595,7 +3595,7 @@ MonoBehaviour:
     themeLengthInChunksRange: {x: 5, y: 10}
   chunkLength: 50
   blockDensity: 1.4
-  groundBedrockLevel: -5
+  groundBedrockLevel: -10
   verticalOffset: -0.1
   terrainHeight: 7
   noiseScale: 0.1
@@ -4972,7 +4972,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1830362276
 RectTransform:
   m_ObjectHideFlags: 0
