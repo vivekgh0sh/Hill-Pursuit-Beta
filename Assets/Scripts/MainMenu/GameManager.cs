@@ -1,4 +1,4 @@
-// --- START OF FILE GameManager.cs (REVISED FOR PAUSE) ---
+// --- START OF FILE GameManager.cs (REVISED FOR UPGRADES) ---
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,31 +11,30 @@ public class GameManager : MonoBehaviour
     [Header("Game State")]
     public GameState currentState;
     public Transform playerTransform;
-
-    // ... (Player Stats, Car Management, and Level Management variables are the same)
     public int coins;
     public int coinsThisRun { get; private set; }
     public int currentDistance;
     public int highscore;
     private float startPositionX;
+    [Header("Car Management")]
     public List<CarData> allCars;
     public int selectedCarIndex = 0;
+
+    [Header("Level Management")]
     public List<string> levelSceneNames;
     public int highestLevelUnlocked { get; private set; }
     private int currentLevelIndex = -1;
     private Dictionary<string, CarData> carDataLookUp;
 
 
-    // --- ADD "Paused" TO THE ENUM ---
     public enum GameState
     {
         MainMenu,
         Playing,
-        Paused, // New state
+        Paused,
         GameOver
     }
 
-    // ... (Awake, InitializeManager, OnEnable, OnDisable methods are the same)
     void Awake() { if (Instance == null) { Instance = this; DontDestroyOnLoad(gameObject); InitializeManager(); } else { Destroy(gameObject); } }
     private void InitializeManager() { carDataLookUp = new Dictionary<string, CarData>(); foreach (var car in allCars) { if (!string.IsNullOrEmpty(car.carID) && !carDataLookUp.ContainsKey(car.carID)) { carDataLookUp.Add(car.carID, car); } } LoadGameData(); }
     void OnEnable() { SceneManager.sceneLoaded += OnSceneLoaded; }
@@ -46,7 +45,7 @@ public class GameManager : MonoBehaviour
         if (scene.name == "endless" || (levelSceneNames != null && levelSceneNames.Contains(scene.name)))
         {
             currentState = GameState.Playing;
-            Time.timeScale = 1f; // Ensure time is running when a level starts
+            Time.timeScale = 1f;
             currentDistance = 0;
             coinsThisRun = 0;
             currentLevelIndex = levelSceneNames.IndexOf(scene.name);
@@ -56,7 +55,6 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        // Only track distance when actively playing
         if (currentState == GameState.Playing && playerTransform != null)
         {
             int newDistance = Mathf.FloorToInt(playerTransform.position.x - startPositionX);
@@ -64,27 +62,39 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // --- ADD PAUSE/RESUME METHODS ---
-    public void PauseGame()
+    // --- UPGRADE SYSTEM METHODS ---
+    public int GetUpgradeLevel(string carID, string upgradeID)
     {
-        if (currentState == GameState.Playing)
+        return PlayerPrefs.GetInt(GetUpgradePrefKey(carID, upgradeID), 0);
+    }
+
+    public void PurchaseUpgrade(CarData car, UpgradeData upgrade)
+    {
+        int currentLevel = GetUpgradeLevel(car.carID, upgrade.upgradeID);
+        if (currentLevel >= upgrade.maxLevel) return; // Already max level
+
+        int cost = upgrade.GetCostForLevel(currentLevel + 1);
+        if (CanAfford(cost))
         {
-            currentState = GameState.Paused;
-            Time.timeScale = 0f; // Freeze time
+            SpendCoins(cost);
+            SetUpgradeLevel(car.carID, upgrade.upgradeID, currentLevel + 1);
+            SaveGameData(); // Save immediately after purchase
         }
     }
 
-    public void ResumeGame()
+    private void SetUpgradeLevel(string carID, string upgradeID, int newLevel)
     {
-        if (currentState == GameState.Paused)
-        {
-            currentState = GameState.Playing;
-            Time.timeScale = 1f; // Unfreeze time
-        }
+        PlayerPrefs.SetInt(GetUpgradePrefKey(carID, upgradeID), newLevel);
     }
-    // --- END OF NEW METHODS ---
 
-    // ... (The rest of the script, including EndGame, LevelCompleted, etc., is the same)
+    private string GetUpgradePrefKey(string carID, string upgradeID)
+    {
+        return $"Upgrade_{carID}_{upgradeID}";
+    }
+    // --- END OF UPGRADE METHODS ---
+
+    public void PauseGame() { if (currentState == GameState.Playing) { currentState = GameState.Paused; Time.timeScale = 0f; } }
+    public void ResumeGame() { if (currentState == GameState.Paused) { currentState = GameState.Playing; Time.timeScale = 1f; } }
     public void RegisterPlayerStart(Transform player) { playerTransform = player; startPositionX = player.position.x; }
     public void EndGame() { if (currentState != GameState.Playing) return; currentState = GameState.GameOver; Time.timeScale = 0f; if (currentDistance > highscore) { highscore = currentDistance; } GameplayUIController uiController = FindFirstObjectByType<GameplayUIController>(); if (uiController != null) { uiController.ShowGameOverScreen(currentDistance, highscore, coins, coinsThisRun); } CommitRunStats(); }
     public void LevelCompleted() { if (currentState != GameState.Playing) return; currentState = GameState.GameOver; Time.timeScale = 0f; if (currentLevelIndex + 1 < levelSceneNames.Count && currentLevelIndex >= highestLevelUnlocked) { highestLevelUnlocked = currentLevelIndex + 1; } bool isLastLevel = (currentLevelIndex >= levelSceneNames.Count - 1); GameplayUIController uiController = FindFirstObjectByType<GameplayUIController>(); if (uiController != null) { uiController.ShowLevelCompleteScreen(currentDistance, coins, coinsThisRun, isLastLevel); } CommitRunStats(); }

@@ -1,4 +1,4 @@
-// --- START OF FILE PlayerSpawner.cs (REVISED) ---
+// --- START OF FILE PlayerSpawner.cs (REVISED FOR UPGRADES) ---
 
 using Unity.Cinemachine;
 using UnityEngine;
@@ -15,21 +15,32 @@ public class PlayerSpawner : MonoBehaviour
         Vector3 spawnPosition = new Vector3(50f, 20f, 0f);
         Quaternion spawnRotation = Quaternion.Euler(0f, 90f, 0f);
 
-        if (GameManager.Instance == null) { return; }
-        CarData selectedCar = GameManager.Instance.GetSelectedCar();
-        if (selectedCar == null) { return; }
+        if (GameManager.Instance == null) { Debug.LogError("GameManager not found!"); return; }
+        CarData selectedCarData = GameManager.Instance.GetSelectedCar();
+        if (selectedCarData == null) { Debug.LogError("No car selected in GameManager!"); return; }
+        if (selectedCarData.carPrefab == null) { Debug.LogError("Selected CarData has no prefab!"); return; }
 
-        GameObject playerCar = Instantiate(selectedCar.carPrefab, spawnPosition, spawnRotation);
-        playerCar.name = "Player - " + selectedCar.carName;
+        GameObject playerCar = Instantiate(selectedCarData.carPrefab, spawnPosition, spawnRotation);
+        playerCar.name = "Player - " + selectedCarData.carName;
 
-        // --- ADD THIS LINE ---
         GameManager.Instance.RegisterPlayerStart(playerCar.transform);
-        // --- END OF ADDED LINE ---
 
-        if (gameplayUIController != null)
+        CarController carController = playerCar.GetComponent<CarController>();
+        if (carController != null)
         {
-            CarController car = playerCar.GetComponent<CarController>();
-            gameplayUIController.CarController = car;
+            // --- ADD THIS LINE ---
+            // Initialize the car with its specific data to apply upgrades.
+            carController.Initialize(selectedCarData);
+            // --- END OF ADDED LINE ---
+
+            if (gameplayUIController != null)
+            {
+                gameplayUIController.CarController = carController;
+            }
+        }
+        else
+        {
+            Debug.LogError("Spawned car prefab is missing a CarController component!");
         }
 
         if (virtualCamera != null) { virtualCamera.Follow = playerCar.transform; virtualCamera.LookAt = playerCar.transform; }
