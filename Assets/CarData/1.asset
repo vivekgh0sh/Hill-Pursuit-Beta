@@ -21,3 +21,32 @@ MonoBehaviour:
   displayPositionOffset: {x: 0, y: 0, z: 0}
   displayRotation: {x: 0, y: 0, z: 0}
   displayScale: 1
+  upgrades:
+  - upgradeName: Engine
+    upgradeID: engine_power
+    maxLevel: 10
+    baseValue: 12000
+    valuePerLevel: 1500
+    baseCost: 100
+    costIncreasePerLevel: 75
+  - upgradeName: Fuel Tank
+    upgradeID: fuel_tank
+    maxLevel: 10
+    baseValue: 50
+    valuePerLevel: 1
+    baseCost: 80
+    costIncreasePerLevel: 50
+  - upgradeName: Boost Power
+    upgradeID: boost_power
+    maxLevel: 10
+    baseValue: 8000
+    valuePerLevel: 1000
+    baseCost: 120
+    costIncreasePerLevel: 100
+  - upgradeName: Tire Grip
+    upgradeID: tire_grip
+    maxLevel: 10
+    baseValue: 3000
+    valuePerLevel: 500
+    baseCost: 75
+    costIncreasePerLevel: 60

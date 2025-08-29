@@ -24,6 +24,8 @@ public class TuneUI : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("TuneUI Start() method called.");
+
         if (GameManager.Instance == null)
         {
             Debug.LogError("GameManager not found! Cannot display tune screen.");
@@ -34,16 +36,28 @@ public class TuneUI : MonoBehaviour
         currentCarData = GameManager.Instance.GetSelectedCar();
         if (currentCarData == null)
         {
-            Debug.LogError("No car data found for tuning!");
+            Debug.LogError("No car data found for tuning! Script will stop here.");
             return;
         }
 
-        backButton.onClick.AddListener(BackToVehicleSelect);
+        // --- DEBUGGING STEP ---
+        if (backButton != null)
+        {
+            Debug.Log("Back button reference is VALID. Adding listener now.");
+            backButton.onClick.AddListener(BackToVehicleSelect);
+        }
+        else
+        {
+            Debug.LogError("Back button reference is NULL! Check the Inspector.");
+        }
+        // --- END DEBUGGING ---
+
 
         DisplayCar();
         SetupUpgradePanels();
         UpdateCoinDisplay();
     }
+
 
     void DisplayCar()
     {
@@ -118,6 +132,9 @@ public class TuneUI : MonoBehaviour
 
     void BackToVehicleSelect()
     {
+        // --- DEBUGGING STEP ---
+        Debug.Log("BackToVehicleSelect() method was successfully called! Loading scene...");
+        // --- END DEBUGGING ---
         SceneManager.LoadScene("VehicleSelectionUI");
     }
 

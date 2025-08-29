@@ -3048,7 +3048,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
   m_UiScaleMode: 1
-  m_ReferencePixelsPerUnit: 100
+  m_ReferencePixelsPerUnit: 0
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 750, y: 600}
   m_ScreenMatchMode: 0
@@ -3577,7 +3577,7 @@ MonoBehaviour:
   - themeName: Snowlands
     topBlockPrefab: {fileID: 1477548228}
     undergroundBlockPrefabs:
-    - {fileID: 1677060040}
+    - {fileID: 2108314812}
     themeLengthInChunksRange: {x: 5, y: 10}
   - themeName: Magmalands
     topBlockPrefab: {fileID: 870184085}
@@ -4452,11 +4452,6 @@ Transform:
   - {fileID: 870184087}
   m_Father: {fileID: 1331362844}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1677060040 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1983800293907890, guid: c7fa96b48946ec940b995b1f1eb27543, type: 3}
-  m_PrefabInstance: {fileID: 2108314811}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1684606556
 GameObject:
   m_ObjectHideFlags: 0
@@ -5708,7 +5703,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4856360162324672, guid: c7fa96b48946ec940b995b1f1eb27543, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1.738
       objectReference: {fileID: 0}
     - target: {fileID: 4856360162324672, guid: c7fa96b48946ec940b995b1f1eb27543, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5751,6 +5746,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7fa96b48946ec940b995b1f1eb27543, type: 3}
+--- !u!1 &2108314812 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1991744354263656, guid: c7fa96b48946ec940b995b1f1eb27543, type: 3}
+  m_PrefabInstance: {fileID: 2108314811}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
