@@ -3058,8 +3058,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2212128649486100359, guid: 75c8d22f70a18664c9b67dc8757cb68f, type: 3}
+      propertyPath: policeCarPrefab
+      value: 
+      objectReference: {fileID: 291146906746882118, guid: 1ab5b91863e464e41946f0751d5fe6c4, type: 3}
+    - target: {fileID: 2212128649486100359, guid: 75c8d22f70a18664c9b67dc8757cb68f, type: 3}
+      propertyPath: pursuitStartDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2212128649486100359, guid: 75c8d22f70a18664c9b67dc8757cb68f, type: 3}
       propertyPath: levelSceneNames.Array.size
-      value: 25
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 2212128649486100359, guid: 75c8d22f70a18664c9b67dc8757cb68f, type: 3}
       propertyPath: 'levelSceneNames.Array.data[0]'
@@ -3163,7 +3171,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2212128649486100359, guid: 75c8d22f70a18664c9b67dc8757cb68f, type: 3}
       propertyPath: 'levelSceneNames.Array.data[25]'
-      value: Level_0
+      value: Level_0 26
       objectReference: {fileID: 0}
     - target: {fileID: 2212128649486100359, guid: 75c8d22f70a18664c9b67dc8757cb68f, type: 3}
       propertyPath: 'levelSceneNames.Array.data[26]'
