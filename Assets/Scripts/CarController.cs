@@ -1,26 +1,28 @@
-// --- START OF FILE CarController.cs (REVISED FOR AI) ---
+// --- START OF FILE CarController.cs (REVISED FOR PROGRESSIVE ACCELERATION) ---
 
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.EventSystems;
 
-// ... (WheelInfo class is the same)
 [System.Serializable]
 public class WheelInfo { public WheelCollider collider; public Transform visual; public bool canSteer = false; public bool hasMotor = true; }
 
 public class CarController : MonoBehaviour
 {
-    // --- ADD THIS NEW VARIABLE ---
     [Header("Control Type")]
-    [Tooltip("If checked, this car will respond to player screen input. Uncheck for AI cars.")]
     public bool isPlayerControlled = true;
-    // --- END OF ADDED VARIABLE ---
+
+    [Header("Driving Physics")]
+    [Tooltip("The MAXIMUM torque the engine can output. This is now set by CarData upgrades.")]
+    public float maxMotorTorque = 20000f; // Formerly motorForce
+    [Tooltip("How quickly the engine reaches max torque. THIS IS THE KEY VALUE FOR 'GAME FEEL'.")]
+    public float accelerationRate = 8000f;
+    [Tooltip("How quickly the car slows down when not accelerating. Simulates engine braking and drag.")]
+    public float coastingDrag = 4000f;
 
     [Header("Car Settings")]
-    public float motorForce = 12000f;
-    // ... (rest of variables are the same)
     public float activeBrakeForce = 3000f;
     public float airControlTorque = 1000f;
+    // ... (rest of variables are the same as before)
     public float stoppedSpeedThreshold = 0.1f;
     [Header("Fuel Settings")]
     public float maxFuel = 100f;
@@ -48,22 +50,22 @@ public class CarController : MonoBehaviour
     public Transform centerOfMass;
     public WheelInfo[] wheels;
 
-    private float verticalInput;
     private Rigidbody rb;
+    private float motorInput;
+    private float brakeInput;
+    private float airControlInput;
+
+    // --- NEW VARIABLE TO TRACK CURRENT ENGINE POWER ---
+    private float currentAppliedTorque = 0f;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        if (centerOfMass != null)
-        {
-            rb.centerOfMass = transform.InverseTransformPoint(centerOfMass.position);
-        }
-        // NOTE: Fuel/Boost initialization is now handled in the Initialize method
+        if (centerOfMass != null) { rb.centerOfMass = transform.InverseTransformPoint(centerOfMass.position); }
     }
 
     public void Initialize(CarData data)
     {
-        // ... (This method is the same as before)
         if (GameManager.Instance == null) return;
         foreach (var upgrade in data.upgrades)
         {
@@ -71,7 +73,8 @@ public class CarController : MonoBehaviour
             float finalValue = upgrade.baseValue + (upgrade.valuePerLevel * level);
             switch (upgrade.upgradeID)
             {
-                case "engine_power": this.motorForce = finalValue; break;
+                // IMPORTANT: The upgrade now controls MAX torque
+                case "engine_power": this.maxMotorTorque = finalValue; break;
                 case "fuel_tank": this.maxFuel = finalValue; break;
                 case "boost_power": this.boostForce = finalValue; break;
                 case "tire_grip": this.activeBrakeForce = finalValue; break;
@@ -83,38 +86,92 @@ public class CarController : MonoBehaviour
 
     void Update()
     {
-        // --- MODIFY THIS BLOCK ---
-        // Only handle screen input if this is the player's car
-        if (isPlayerControlled)
-        {
-            HandleInput();
-        }
-        // --- END OF MODIFICATION ---
-
+        if (isPlayerControlled) { HandlePlayerInput(); }
         UpdateWheelVisuals();
         HandleBoostRegen();
     }
 
-    // --- ADD THIS NEW PUBLIC METHOD FOR AI ---
-    /// <summary>
-    /// Allows an external script (like an AI controller) to set the car's input.
-    /// </summary>
-    /// <param name="input">1 for accelerate, -1 for brake/reverse, 0 for coast.</param>
-    public void SetVerticalInput(float input)
+    void FixedUpdate()
     {
-        verticalInput = input;
+        CheckGroundedStatus();
+        ApplyDrivingForces();
+        ApplyAirControl();
+        if (isPlayerControlled) { CheckGameOverConditions(); }
     }
-    // --- END OF NEW METHOD ---
 
-    // ... (The rest of the script remains unchanged)
-    void FixedUpdate() { CheckGroundedStatus(); ApplyDrivingForces(); ApplyAirControl(); CheckGameOverConditions(); }
+    public void SetAI_MotorInput(float input) { motorInput = Mathf.Clamp(input, -1f, 1f); }
+    public void SetAI_BrakeInput(float input) { brakeInput = Mathf.Clamp01(input); }
+    public void SetAI_AirControlInput(float input) { airControlInput = Mathf.Clamp(input, -1f, 1f); }
+
+    private void HandlePlayerInput()
+    {
+        float verticalInput = 0;
+        var pointer = Pointer.current;
+        if (pointer != null && pointer.press.isPressed)
+        {
+            verticalInput = pointer.position.ReadValue().x > Screen.width / 2 ? 1 : -1;
+        }
+        motorInput = verticalInput;
+        brakeInput = 0;
+        airControlInput = verticalInput;
+    }
+
+    private void ApplyDrivingForces()
+    {
+        // --- NEW PROGRESSIVE ACCELERATION LOGIC ---
+
+        // 1. Ramp up or down the current torque based on input
+        if (motorInput > 0) // Accelerating
+        {
+            currentAppliedTorque += accelerationRate * Time.fixedDeltaTime;
+        }
+        else if (motorInput < 0) // Reversing
+        {
+            currentAppliedTorque -= accelerationRate * Time.fixedDeltaTime;
+        }
+        else // Coasting
+        {
+            currentAppliedTorque = Mathf.MoveTowards(currentAppliedTorque, 0f, coastingDrag * Time.fixedDeltaTime);
+        }
+
+        // 2. Clamp the torque to the car's maximum capability
+        currentAppliedTorque = Mathf.Clamp(currentAppliedTorque, -maxMotorTorque, maxMotorTorque);
+
+        // --- END OF NEW LOGIC ---
+
+        float finalTorque = currentAppliedTorque;
+        if (isBoosting && currentBoost > 0)
+        {
+            // Boost adds a direct force on top of the current engine torque
+            finalTorque += boostForce * motorInput;
+            currentBoost -= boostDepletionRate * Time.fixedDeltaTime;
+        }
+
+        if (isPlayerControlled && motorInput > 0 && currentFuel > 0)
+        {
+            currentFuel -= fuelDepletionRate * Time.fixedDeltaTime;
+        }
+
+        // Use brake input for braking, overriding motor
+        float targetBrakeTorque = activeBrakeForce * brakeInput;
+
+        foreach (var wheel in wheels)
+        {
+            if (wheel.hasMotor)
+            {
+                wheel.collider.motorTorque = finalTorque;
+            }
+            // If we are braking, apply brakes.
+            wheel.collider.brakeTorque = targetBrakeTorque;
+        }
+    }
+
+    // (The rest of the methods like PerformFlip, CheckGameOverConditions, etc., are unchanged)
     public void PerformFlip() { if (!isGrounded && Time.time > lastFlipTime + flipCooldown) { lastFlipTime = Time.time; rb.AddTorque(Vector3.forward * -flipTorque, ForceMode.Impulse); currentBoost = Mathf.Min(maxBoost, currentBoost + boostRewardForFlip); } }
-    void HandleInput() { verticalInput = 0; var pointer = Pointer.current; if (pointer == null || !pointer.press.isPressed) return; if (pointer.position.ReadValue().x > Screen.width / 2) { verticalInput = 1; } else { verticalInput = -1; } }
-    void ApplyDrivingForces() { if (verticalInput != 0) { rb.WakeUp(); } float motorInput = verticalInput > 0 && currentFuel > 0 ? verticalInput : 0; float finalMotorForce = motorForce; if (isBoosting && currentBoost > 0) { finalMotorForce += boostForce; currentBoost -= boostDepletionRate * Time.fixedDeltaTime; } float targetMotorTorque = finalMotorForce * motorInput; if (verticalInput > 0 && currentFuel > 0 && isPlayerControlled) { currentFuel -= fuelDepletionRate * Time.fixedDeltaTime; } float targetBrakeTorque = verticalInput < 0 ? activeBrakeForce : 0f; foreach (var wheel in wheels) { if (wheel.hasMotor) { wheel.collider.motorTorque = targetMotorTorque; } wheel.collider.brakeTorque = targetBrakeTorque; } }
-    void CheckGameOverConditions() { if (GameManager.Instance == null || GameManager.Instance.currentState != GameManager.GameState.Playing) return; if (isPlayerControlled && currentFuel <= 0) { GameManager.Instance.EndGame("OUT OF FUEL"); return; } bool isFlipped = Vector3.Dot(transform.up, Vector3.down) > 0; bool isStopped = rb.linearVelocity.magnitude < stoppedSpeedThreshold; if (isPlayerControlled && isFlipped && isStopped) { timeSinceStuck += Time.fixedDeltaTime; if (timeSinceStuck >= stuckTimeThreshold) { GameManager.Instance.EndGame("STUCK"); } } else { timeSinceStuck = 0; } }
+    void CheckGameOverConditions() { if (GameManager.Instance == null || GameManager.Instance.currentState != GameManager.GameState.Playing) return; if (currentFuel <= 0) { GameManager.Instance.EndGame("OUT OF FUEL"); return; } bool isFlipped = Vector3.Dot(transform.up, Vector3.down) > 0; bool isStopped = rb.linearVelocity.magnitude < stoppedSpeedThreshold; if (isFlipped && isStopped) { timeSinceStuck += Time.fixedDeltaTime; if (timeSinceStuck >= stuckTimeThreshold) { GameManager.Instance.EndGame("STUCK"); } } else { timeSinceStuck = 0; } }
     void CheckGroundedStatus() { isGrounded = false; foreach (var wheel in wheels) { if (wheel.collider.isGrounded) { isGrounded = true; return; } } }
     void HandleBoostRegen() { if (!isBoosting && currentBoost < maxBoost) { currentBoost += boostRegenRate * Time.deltaTime; currentBoost = Mathf.Min(currentBoost, maxBoost); } }
-    void ApplyAirControl() { if (!isGrounded) { rb.AddTorque(Vector3.forward * verticalInput * airControlTorque); } }
+    void ApplyAirControl() { if (!isGrounded) { rb.AddTorque(Vector3.forward * airControlInput * airControlTorque); } }
     void UpdateWheelVisuals() { foreach (var wheel in wheels) { Vector3 pos; Quaternion rot; wheel.collider.GetWorldPose(out pos, out rot); wheel.visual.position = pos; wheel.visual.rotation = rot; } }
     public void AddFuel(float amount) { currentFuel += amount; currentFuel = Mathf.Min(currentFuel, maxFuel); }
 }

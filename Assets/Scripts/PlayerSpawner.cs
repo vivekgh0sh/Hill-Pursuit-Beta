@@ -12,7 +12,7 @@ public class PlayerSpawner : MonoBehaviour
 
     void Start()
     {
-        Vector3 spawnPosition = new Vector3(50f, 20f, 0f);
+        Vector3 spawnPosition = new Vector3(50f, 10f, 0f);
         Quaternion spawnRotation = Quaternion.Euler(0f, 90f, 0f);
 
         if (GameManager.Instance == null) { Debug.LogError("GameManager not found!"); return; }

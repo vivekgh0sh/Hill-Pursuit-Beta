@@ -1,4 +1,4 @@
-// --- CREATE NEW FILE: PoliceAIController.cs ---
+// --- START OF FILE PoliceAIController.cs (SIMPLIFIED & STABILIZED REVISION) ---
 
 using UnityEngine;
 using System.Collections;
@@ -6,116 +6,92 @@ using System.Collections;
 [RequireComponent(typeof(CarController))]
 public class PoliceAIController : MonoBehaviour
 {
-    [Header("AI Settings")]
-    [Tooltip("The transform of the player car that the AI should chase.")]
+    [Header("AI Targeting")]
     public Transform playerTarget;
-    [Tooltip("How close the cop tries to get to the player before braking.")]
-    public float targetDistance = 15f;
     [Tooltip("The distance at which the player is considered 'caught'.")]
     public float catchDistance = 5f;
 
     [Header("AI Behavior")]
-    [Tooltip("How often, in seconds, the AI can use its boost to catch up.")]
-    public float boostCooldown = 10f;
-    [Tooltip("How long the boost lasts when activated.")]
-    public float boostDuration = 2.0f;
-    [Tooltip("The AI will boost if the player is further than this distance.")]
-    public float boostActivationDistance = 40f;
-
-    [Tooltip("How strongly the AI tries to level itself in the air.")]
-    public float airControlStiffness = 200f;
+    [Tooltip("AI accelerates if player is further than this distance.")]
+    public float throttleDistance = 20f;
+    [Tooltip("AI brakes if player is closer than this distance.")]
+    public float brakeDistance = 15f;
 
     private CarController carController;
-    private float lastBoostTime = -99f;
-    private bool isStuck = false;
+    private bool isAIActive = false; // Prevents AI from acting immediately on spawn
 
     void Awake()
     {
-        // Get the CarController component attached to this same GameObject
         carController = GetComponent<CarController>();
+    }
+
+    void Start()
+    {
+        // Start a coroutine to delay the AI's activation. This helps prevent flipping on spawn.
+        StartCoroutine(ActivateAIWithDelay());
+    }
+
+    private IEnumerator ActivateAIWithDelay()
+    {
+        // Wait for 1.5 seconds to let the car settle on the ground
+        yield return new WaitForSeconds(1.5f);
+        isAIActive = true;
     }
 
     void FixedUpdate()
     {
-        // If we don't have a target, do nothing.
-        if (playerTarget == null)
+        // Do nothing if the AI is not yet active or has no target
+        if (!isAIActive || playerTarget == null)
         {
-            carController.SetVerticalInput(0); // Stop the car
+            carController.SetAI_MotorInput(0);
+            carController.SetAI_BrakeInput(1); // Hold brakes while inactive
             return;
         }
 
-        // --- Core AI Logic ---
-        HandleChasing();
-        HandleBoosting();
-        HandleFlippingAndStuck();
-        HandleAirControl();
-    }
+        // --- CORE MOVEMENT LOGIC (Simplified) ---
 
-    private void HandleAirControl()
-    {
-        if (!carController.isGrounded)
-        {
-            // If we are in the air, try to level out
-            float angleCorrection = Vector3.SignedAngle(transform.right, Vector3.right, Vector3.forward);
-            GetComponent<Rigidbody>().AddTorque(Vector3.forward * angleCorrection * airControlStiffness * Time.fixedDeltaTime);
-        }
-    }
-    private void HandleChasing()
-    {
         float distanceToPlayer = Vector3.Distance(transform.position, playerTarget.position);
 
-        // 1. Check if the player is caught
+        // 1. Check if we caught the player
         if (distanceToPlayer < catchDistance)
         {
             GameManager.Instance.EndGame("YOU WERE CAUGHT!");
-            return; // Stop processing AI once caught
+            carController.SetAI_BrakeInput(1); // Brake hard when caught
+            carController.SetAI_MotorInput(0);
+            return;
         }
 
-        // --- REVISED LOGIC ---
-        // 2. Determine driving direction
+        // 2. Decide to accelerate or brake based on distance
         bool isPlayerInFront = playerTarget.position.x > transform.position.x;
 
         if (isPlayerInFront)
         {
-            // Player is ahead of us. Full throttle!
-            carController.SetVerticalInput(1f);
+            // Player is in front, decide whether to hit the gas or the brakes
+            if (distanceToPlayer > throttleDistance)
+            {
+                // Player is far away, full throttle!
+                carController.SetAI_MotorInput(1f);
+                carController.SetAI_BrakeInput(0);
+            }
+            else if (distanceToPlayer < brakeDistance)
+            {
+                // Player is too close, hit the brakes!
+                carController.SetAI_MotorInput(0);
+                carController.SetAI_BrakeInput(1f);
+            }
+            else
+            {
+                // We are in the sweet spot between braking and throttling, so coast.
+                carController.SetAI_MotorInput(0);
+                carController.SetAI_BrakeInput(0);
+            }
         }
         else
         {
-            // We have overshot the player. Brake hard to turn around.
-            carController.SetVerticalInput(-1f);
-        }
-        // --- END OF REVISED LOGIC ---
-    }
-
-    private void HandleBoosting()
-    {
-        float distanceToPlayer = Vector3.Distance(transform.position, playerTarget.position);
-
-        // Check if we should boost
-        if (distanceToPlayer > boostActivationDistance && Time.time > lastBoostTime + boostCooldown)
-        {
-            StartCoroutine(ActivateBoost());
-        }
-    }
-
-    private IEnumerator ActivateBoost()
-    {
-        lastBoostTime = Time.time;
-        carController.isBoosting = true;
-        yield return new WaitForSeconds(boostDuration);
-        carController.isBoosting = false;
-    }
-
-    private void HandleFlippingAndStuck()
-    {
-        // Use the same logic as the player for flipping
-        bool isFlipped = Vector3.Dot(transform.up, Vector3.down) > 0;
-        bool isStopped = GetComponent<Rigidbody>().linearVelocity.magnitude < 0.5f;
-
-        if (isFlipped && isStopped)
-        {
-            carController.PerformFlip();
+            // Player is behind us. We need to turn around.
+            // Hit the REVERSE motor and DO NOT brake.
+            carController.SetAI_MotorInput(-0.5f); // Use partial reverse to turn more easily
+            carController.SetAI_BrakeInput(0);
         }
     }
 }

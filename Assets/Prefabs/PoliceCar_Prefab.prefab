@@ -85,7 +85,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarController
   isPlayerControlled: 0
-  motorForce: 6000
+  maxMotorTorque: 20000
+  accelerationRate: 8000
+  coastingDrag: 4000
   activeBrakeForce: 6000
   airControlTorque: 3000
   stoppedSpeedThreshold: 6000
@@ -152,12 +154,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PoliceAIController
   playerTarget: {fileID: 0}
-  targetDistance: 15
-  catchDistance: 5
-  boostCooldown: 10
-  boostDuration: 2
-  boostActivationDistance: 40
-  airControlStiffness: 200
+  catchDistance: 3
+  throttleDistance: 20
+  brakeDistance: 0
 --- !u!1 &746713473213647949
 GameObject:
   m_ObjectHideFlags: 0

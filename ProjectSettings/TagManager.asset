@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Obstacle
   - Diamond
+  - Cop
   layers:
   - Default
   - TransparentFX
@@ -19,8 +20,8 @@ TagManager:
   - Police
   - Player
   - ShowroomCar
-  - 
-  - 
+  - Cop
+  - Collectible
   - 
   - 
   - 
