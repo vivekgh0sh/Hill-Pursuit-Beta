@@ -9,10 +9,11 @@ public class PlayerSpawner : MonoBehaviour
     [SerializeField] private TerrainGenerator terrainGenerator;
     [SerializeField] private CinemachineCamera virtualCamera;
     [SerializeField] private GameplayUIController gameplayUIController;
+    [SerializeField] private DynamicCameraZoom dynamicCameraZoom;
 
     void Start()
     {
-        Vector3 spawnPosition = new Vector3(50f, 10f, 0f);
+        Vector3 spawnPosition = new Vector3(50f, 20f, 0f);
         Quaternion spawnRotation = Quaternion.Euler(0f, 90f, 0f);
 
         if (GameManager.Instance == null) { Debug.LogError("GameManager not found!"); return; }
@@ -28,11 +29,7 @@ public class PlayerSpawner : MonoBehaviour
         CarController carController = playerCar.GetComponent<CarController>();
         if (carController != null)
         {
-            // --- ADD THIS LINE ---
-            // Initialize the car with its specific data to apply upgrades.
             carController.Initialize(selectedCarData);
-            // --- END OF ADDED LINE ---
-
             if (gameplayUIController != null)
             {
                 gameplayUIController.CarController = carController;
@@ -41,6 +38,11 @@ public class PlayerSpawner : MonoBehaviour
         else
         {
             Debug.LogError("Spawned car prefab is missing a CarController component!");
+        }
+
+        if (dynamicCameraZoom != null)
+        {
+            dynamicCameraZoom.carRigidbody = playerCar.GetComponent<Rigidbody>();
         }
 
         if (virtualCamera != null) { virtualCamera.Follow = playerCar.transform; virtualCamera.LookAt = playerCar.transform; }

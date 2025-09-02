@@ -64,4 +64,6 @@ public class VehicleSelectionUI : MonoBehaviour
     void Update() { if (showroomCarAnchor != null && showroomCarAnchor.childCount > 0) { showroomCarAnchor.GetChild(0).Rotate(Vector3.up, rotationSpeed * Time.deltaTime); } }
     void SetLayerRecursively(GameObject obj, int newLayer) { if (obj == null) return; obj.layer = newLayer; foreach (Transform child in obj.transform) { if (child == null) continue; SetLayerRecursively(child.gameObject, newLayer); } }
     public void GoToLevelSelect() { SceneManager.LoadScene("LevelSelectUI"); }
+    public void GoToShop() { SceneManager.LoadScene("ShopUI"); }
+
 }

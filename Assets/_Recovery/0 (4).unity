@@ -173,50 +173,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &46663311
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 46663313}
-  - component: {fileID: 46663312}
-  m_Layer: 0
-  m_Name: IAPManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &46663312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 46663311}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 945ff5f8bbee46546bd205eadaab66f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::IAPManager
---- !u!4 &46663313
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 46663311}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1540.2805, y: 694.23676, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &223551658
 GameObject:
   m_ObjectHideFlags: 0
@@ -1601,7 +1557,7 @@ GameObject:
   - component: {fileID: 1184340297}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3061,19 +3017,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1888217384}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 15813471}
-        m_TargetAssemblyTypeName: VehicleSelectionUI, Assembly-CSharp
-        m_MethodName: GoToShop
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1888217384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3131,7 +3075,7 @@ PrefabInstance:
       objectReference: {fileID: 291146906746882118, guid: 1ab5b91863e464e41946f0751d5fe6c4, type: 3}
     - target: {fileID: 2212128649486100359, guid: 75c8d22f70a18664c9b67dc8757cb68f, type: 3}
       propertyPath: pursuitStartDelay
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2212128649486100359, guid: 75c8d22f70a18664c9b67dc8757cb68f, type: 3}
       propertyPath: levelSceneNames.Array.size
@@ -3453,4 +3397,3 @@ SceneRoots:
   - {fileID: 15813472}
   - {fileID: 6404721279206719685}
   - {fileID: 706306251105805825}
-  - {fileID: 46663313}

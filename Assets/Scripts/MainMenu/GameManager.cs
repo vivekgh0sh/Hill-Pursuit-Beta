@@ -134,6 +134,23 @@ public class GameManager : MonoBehaviour
 
         CommitRunStats();
     }
+    public void AddStars(int amount)
+    {
+        if (amount <= 0) return;
+        coins += amount;
+        // Immediately save after a real-money purchase
+        SaveGameData();
+        Debug.Log($"{amount} stars added. New total: {coins}");
+    }
+
+    public void UnlockAllLevels()
+    {
+        // Set the unlocked level to the highest possible index
+        highestLevelUnlocked = levelSceneNames.Count - 1;
+        // Immediately save this permanent unlock
+        SaveGameData();
+        Debug.Log("All levels have been unlocked!");
+    }
     // --- END OF MODIFICATION ---
 
     // ... (The rest of the script, Update, PauseGame, etc., is the same)

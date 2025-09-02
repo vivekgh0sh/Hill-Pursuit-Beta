@@ -8,7 +8,7 @@ PlayerSettings:
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
-  defaultScreenOrientation: 4
+  defaultScreenOrientation: 3
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
@@ -770,7 +770,8 @@ PlayerSettings:
   XboxOneOverrideIdentityName: 
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
-  cloudServicesEnabled: {}
+  cloudServicesEnabled:
+    Purchasing: 1
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -792,11 +793,11 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 1
   windowsGamepadBackendHint: 0
-  cloudProjectId: 40ab1a68-14e8-4928-a9f0-6408806b1d57
+  cloudProjectId: fcf61305-e8d8-4c35-a4ba-8592e8efb3ee
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Hill Pursuit Beta
-  organizationId: gameplindia
+  projectName: Hill Pursuit Beta (1)
+  organizationId: unity_9130de9fb4533acfc9d1
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

@@ -3288,6 +3288,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TerrainGenerator
   player: {fileID: 0}
   terrainChunkPrefab: {fileID: 3173276282485239623, guid: 122c312936ae7d84d922ea14997b2ca9, type: 3}
+  skyTransitionDuration: 5
   collectiblePrefab: {fileID: 8539191750703213335, guid: 7ff0ddc6f18ac5b43a81ba3eea486a05, type: 3}
   collectibleSpawnChance: 0.1
   collectibleVerticalOffset: 1.5
@@ -3300,11 +3301,13 @@ MonoBehaviour:
     undergroundBlockPrefabs:
     - {fileID: 1001120528}
     themeLengthInChunksRange: {x: 5, y: 10}
+    skyColor: {r: 0.42745098, g: 0.8352941, b: 0.98039216, a: 1}
   - themeName: Snowlands
     topBlockPrefab: {fileID: 1477548228}
     undergroundBlockPrefabs:
     - {fileID: 2108314812}
     themeLengthInChunksRange: {x: 5, y: 10}
+    skyColor: {r: 0.7028302, g: 0.92201936, b: 1, a: 1}
   - themeName: Magmalands
     topBlockPrefab: {fileID: 870184085}
     undergroundBlockPrefabs:
@@ -3313,12 +3316,14 @@ MonoBehaviour:
     - {fileID: 1379115405}
     - {fileID: 1494739072}
     themeLengthInChunksRange: {x: 5, y: 10}
+    skyColor: {r: 1, g: 0.7890122, b: 0.4764151, a: 1}
   - themeName: Desertlands
     topBlockPrefab: {fileID: 1492428084}
     undergroundBlockPrefabs:
     - {fileID: 1546187352}
     - {fileID: 1215071988}
     themeLengthInChunksRange: {x: 5, y: 10}
+    skyColor: {r: 1, g: 0.9768339, b: 0.6556604, a: 1}
   chunkLength: 50
   blockDensity: 1.4
   groundBedrockLevel: -10
@@ -3844,6 +3849,7 @@ MonoBehaviour:
   terrainGenerator: {fileID: 1280041648}
   virtualCamera: {fileID: 1815747151}
   gameplayUIController: {fileID: 1015873851}
+  dynamicCameraZoom: {fileID: 1815747154}
 --- !u!4 &1459700319
 Transform:
   m_ObjectHideFlags: 0
@@ -4579,6 +4585,7 @@ GameObject:
   - component: {fileID: 1815747151}
   - component: {fileID: 1815747150}
   - component: {fileID: 1815747153}
+  - component: {fileID: 1815747154}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -4676,6 +4683,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineHardLookAt
   LookAtOffset: {x: -50, y: -1, z: 0}
+--- !u!114 &1815747154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1815747148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa244f6502d1ddd49a13c4886757e7ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DynamicCameraZoom
+  carRigidbody: {fileID: 0}
+  minOrthographicSize: 5
+  maxOrthographicSize: 8
+  maxSpeedForZoom: 2
+  smoothTime: 0.5
 --- !u!1 &1830362275
 GameObject:
   m_ObjectHideFlags: 0
@@ -4693,7 +4717,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1830362276
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5007,7 +5031,7 @@ GameObject:
   - component: {fileID: 1979818830}
   m_Layer: 0
   m_Name: CameraRig
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
