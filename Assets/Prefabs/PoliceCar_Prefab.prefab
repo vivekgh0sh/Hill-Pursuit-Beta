@@ -156,7 +156,7 @@ MonoBehaviour:
   playerTarget: {fileID: 0}
   catchDistance: 3
   throttleDistance: 20
-  brakeDistance: 0
+  brakeDistance: 15
 --- !u!1 &746713473213647949
 GameObject:
   m_ObjectHideFlags: 0
