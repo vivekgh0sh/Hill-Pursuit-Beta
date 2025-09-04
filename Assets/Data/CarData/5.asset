@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df26ffde5043147469ed21d435177818, type: 3}
-  m_Name: 8
+  m_Name: 5
   m_EditorClassIdentifier: Assembly-CSharp::CarData
-  carName: Lotus 49
-  carID: 8
-  carPrefab: {fileID: 3836575770338173566, guid: a67633b170710104c8d252c5b214f666, type: 3}
+  carName: Ford GT40
+  carID: 5
+  carPrefab: {fileID: 291146906746882118, guid: 3d610158cf60e6346aa708e269594155, type: 3}
   carIcon: {fileID: 0}
-  unlockCost: 0
+  unlockCost: 1000
   isUnlockedByDefault: 0
   displayPositionOffset: {x: 0, y: 0, z: 0}
   displayRotation: {x: 0, y: 0, z: 0}
@@ -25,8 +25,8 @@ MonoBehaviour:
   - upgradeName: Engine
     upgradeID: engine_power
     maxLevel: 10
-    baseValue: 12000
-    valuePerLevel: 1500
+    baseValue: 1200
+    valuePerLevel: 150
     baseCost: 100
     costIncreasePerLevel: 75
   - upgradeName: Fuel Tank

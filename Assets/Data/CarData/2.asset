@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df26ffde5043147469ed21d435177818, type: 3}
-  m_Name: 7
+  m_Name: 2
   m_EditorClassIdentifier: Assembly-CSharp::CarData
-  carName: Matra MS80
-  carID: 7
-  carPrefab: {fileID: 3027150061813832843, guid: 2a23b1c891545194b90fb1235852aa5b, type: 3}
+  carName: "Citro\xEBn DS"
+  carID: 2
+  carPrefab: {fileID: 8185603719396955364, guid: 244cd21f74f980747bb834d6a2381305, type: 3}
   carIcon: {fileID: 0}
-  unlockCost: 0
-  isUnlockedByDefault: 0
+  unlockCost: 1000
+  isUnlockedByDefault: 1
   displayPositionOffset: {x: 0, y: 0, z: 0}
   displayRotation: {x: 0, y: 0, z: 0}
   displayScale: 1
@@ -25,8 +25,8 @@ MonoBehaviour:
   - upgradeName: Engine
     upgradeID: engine_power
     maxLevel: 10
-    baseValue: 12000
-    valuePerLevel: 1500
+    baseValue: 1200
+    valuePerLevel: 150
     baseCost: 100
     costIncreasePerLevel: 75
   - upgradeName: Fuel Tank

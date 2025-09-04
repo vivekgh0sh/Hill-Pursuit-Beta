@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df26ffde5043147469ed21d435177818, type: 3}
-  m_Name: 9
+  m_Name: 6
   m_EditorClassIdentifier: Assembly-CSharp::CarData
-  carName: McLaren M7A
-  carID: 9
-  carPrefab: {fileID: 2704782656898304025, guid: 1a3c02c2a3007054b8edda389dfe3b99, type: 3}
+  carName: Porsche 908 Spyder
+  carID: 6
+  carPrefab: {fileID: 73810984305068448, guid: edda2ade6a397a64a8fef13ced619bf6, type: 3}
   carIcon: {fileID: 0}
   unlockCost: 0
   isUnlockedByDefault: 0
@@ -25,8 +25,8 @@ MonoBehaviour:
   - upgradeName: Engine
     upgradeID: engine_power
     maxLevel: 10
-    baseValue: 12000
-    valuePerLevel: 1500
+    baseValue: 1200
+    valuePerLevel: 150
     baseCost: 100
     costIncreasePerLevel: 75
   - upgradeName: Fuel Tank
