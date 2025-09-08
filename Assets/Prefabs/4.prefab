@@ -758,13 +758,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 341b0e03e1b4f7e46a81d6378a49c9e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarController
-  motorForce: 6000
+  isPlayerControlled: 1
+  maxMotorTorque: 1000
+  accelerationRate: 2000
+  coastingDrag: 50000
   activeBrakeForce: 6000
   airControlTorque: 3000
   stoppedSpeedThreshold: 6000
   maxFuel: 50
   fuelDepletionRate: 1
-  currentFuel: 0
   maxBoost: 1000
   boostForce: 25000
   boostDepletionRate: 200

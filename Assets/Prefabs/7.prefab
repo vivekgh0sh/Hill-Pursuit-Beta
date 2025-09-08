@@ -1146,7 +1146,7 @@ Rigidbody:
   m_GameObject: {fileID: 3027150061813832843}
   serializedVersion: 5
   m_Mass: 800
-  m_LinearDamping: 0.5
+  m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -1177,9 +1177,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarController
   isPlayerControlled: 1
-  maxMotorTorque: 20000
-  accelerationRate: 8000
-  coastingDrag: 40
+  maxMotorTorque: 1000
+  accelerationRate: 2000
+  coastingDrag: 5000000
   activeBrakeForce: 6000
   airControlTorque: 3000
   stoppedSpeedThreshold: 6000
